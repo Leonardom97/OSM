@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="es-419">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>OSM</title>
+    <meta property="og:image" content="assets/img/Sin%20título-2.png">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/png" sizes="697x475" href="../assets/img/Sin%20título-2.png">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="../assets/css/bs-theme-overrides.css">
+    <link rel="stylesheet" href="assets/css/coreui-multiselect.min.css">
+    <style>body { visibility: hidden; }</style>
+</head>
+<body id="page-top" data-role="Administrador">
+    <div id="wrapper">
+        <div id="sidebar"></div>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <div id="navbar"></div>
+                <div class="container-fluid">
+                    <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                        <h2 class="text-primary mb-0">Administrador de Usuarios</h2>
+                        <button class="btn btn-primary btn-sm d-none d-sm-inline-block" id="btn_ru" type="button" data-bs-toggle="modal" data-bs-target="#modal-ru">
+                            <i class="fas fa-user-plus fa-sm text-white-50"></i>&nbsp;Registrar Usuario
+                        </button>
+                    </div>
+                    <div class="card shadow">
+                        <div class="card-header py-3" style="background: rgb(248, 249, 252);">
+                            <p class="text-primary m-0 fw-bold">Listado de usuarios</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 text-nowrap">
+                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
+                                        <label class="form-label">
+                                            Mostrar
+                                            <select id="registros-por-pagina" class="d-inline-block form-select form-select-sm">
+                                                <option value="10" selected>10</option>
+                                                <option value="25">25</option>
+                                                <option value="50">50</option>
+                                                <option value="100">100</option>
+                                            </select>
+                                            &nbsp;
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-md-end dataTables_filter" id="dataTable_filter">
+                                        <label class="form-label">
+                                            <input id="filtro-busqueda" type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Buscar ">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                                <table class="table my-0" id="dataTable">
+                                     <thead>
+                                        <tr>
+                                            <th class="text-center" style="background: var(--bs-primary);border-top-left-radius: 10px;border-bottom-left-radius: 10px;border-width: 1;color: var(--bs-body-bg);">Id</th>
+                                            <th class="text-center" style="background: var(--bs-primary);border-color: var(--bs-card-cap-bg);border-left-width: 1px;color: var(--bs-body-bg);">Nombres</th>
+                                            <th class="text-center" style="background: var(--bs-primary);border-color: var(--bs-card-cap-bg);border-left-width: 1px;color: var(--bs-body-bg);">Apellidos</th>
+                                            <th class="text-center" style="background: var(--bs-primary);border-color: var(--bs-card-cap-bg);border-left-width: 1px;color: var(--bs-body-bg);">Cedula</th>
+                                            <th class="text-center" style="background: var(--bs-primary);border-color: var(--bs-card-cap-bg);border-left-width: 1px;color: var(--bs-body-bg);">Roles</th>
+                                            <th class="text-center" style="background: var(--bs-primary);border-top-right-radius: 10px;border-bottom-right-radius: 10px;border-color: var(--bs-card-cap-bg);border-left-width: 1px;color: var(--bs-body-bg);">Opciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Contenido dinámico por JS -->
+                                    </tbody>
+                                    <tfoot class="text-center">
+                                        <tr>
+                                            <th class="text-center" style="background: var(--bs-primary);border-top-left-radius: 10px;border-bottom-left-radius: 10px;border-width: 1;color: var(--bs-body-bg);">Id</th>
+                                            <th class="text-center" style="background: var(--bs-primary);border-color: var(--bs-card-cap-bg);border-left-width: 1px;color: var(--bs-body-bg);">Nombres</th>
+                                            <th class="text-center" style="background: var(--bs-primary);border-color: var(--bs-card-cap-bg);border-left-width: 1px;color: var(--bs-body-bg);">Apellidos</th>
+                                            <th class="text-center" style="background: var(--bs-primary);border-color: var(--bs-card-cap-bg);border-left-width: 1px;color: var(--bs-body-bg);">Cedula</th>
+                                            <th class="text-center" style="background: var(--bs-primary);border-color: var(--bs-card-cap-bg);border-left-width: 1px;color: var(--bs-body-bg);">Roles</th>
+                                            <th class="text-center" style="background: var(--bs-primary);border-top-right-radius: 10px;border-bottom-right-radius: 10px;border-color: var(--bs-card-cap-bg);border-left-width: 1px;color: var(--bs-body-bg);">Opciones</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 align-self-center">
+                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Mostrando 0 de 0</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                        <ul class="pagination">
+                                            <!-- Paginación dinámica por JS -->
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<!-- MODAL EDITAR USUARIO -->
+<div id="modal-eru" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header" style="background: rgb(248,249,252);">
+                <h4 class="modal-title">Editor de Usuario</h4>
+                <button class="btn-close focus-ring focus-ring-primary" aria-label="Cerrar" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body text-lg-center">
+                <form id="form-eru" class="needs-validation" novalidate>
+                    <div class="row g-5" style="background: var(--bs-body-bg);border-radius: 10px;">
+                        <div class="col">
+                            <main>
+                                <div class="row g-5" style="background: var(--bs-body-bg);border-radius: 10px;">
+                                    <div class="col-md-12 col-lg-12 col-xl-12">
+                                        <h4 class="mb-3" id="usuario-id-text">Usuario ID ##</h4>
+                                        <div class="row g-3">
+                                            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                                <label class="form-label" for="cedula-eru">Editar Identificacion</label>
+                                                <div class="input-group has-validation">
+                                                    <input id="cedula-eru" class="form-control" type="text" placeholder="Cedula" required style="height: 50px;" />
+                                                    <div class="input-group-text invalid-feedback"><span>Ingresar cedula del usuario</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                                                <label class="form-label" for="multiSelect-eru">Editar Rol</label>
+                                                <div id="multiSelect-eru" class="coreui-ms-wrapper">
+                                                    <div id="selectedContainer-eru" class="coreui-ms-selected">
+                                                        <span id="placeholder-eru" class="coreui-ms-placeholder">Selecciona roles...</span>
+                                                    </div>
+                                                    <div id="optionsList-eru" class="coreui-ms-options" style="max-height:180px;overflow-y:auto;">
+                                                        <!-- Roles dinámicos por JS -->
+                                                    </div>
+                                                    <select id="hiddenSelect-eru" name="roles" multiple style="display:none;">
+                                                        <!-- Opciones dinámicas por JS -->
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                                                <label class="form-label" for="nombre1-eru" style="font-size: 18px;">Editar Nombres </label>
+                                                <div class="input-group has-validation">
+                                                    <input id="nombre1-eru" class="form-control" type="text" placeholder="Primer Nombre" required style="height: 50px;border-radius: 6px;" />
+                                                    <input id="nombre2-eru" class="form-control" type="text" placeholder="Segundo Nombre" required style="margin-left: 24px;height: 50px;border-radius: 6px;" />
+                                                    <div class="input-group-text invalid-feedback"><span>Nombre requerido.</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                                                <label class="form-label" for="apellido1-eru" style="font-size: 18px;">Editar Apellidos </label>
+                                                <div class="input-group has-validation">
+                                                    <input id="apellido1-eru" class="form-control" type="text" placeholder="Primer Apellido" required style="height: 50px;border-radius: 6px;" />
+                                                    <input id="apellido2-eru" class="form-control" type="text" placeholder="Segundo Apellido" required style="margin-left: 18px;height: 50px;border-radius: 6px;" />
+                                                    <div class="input-group-text invalid-feedback"><span>Apellido requerido.</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                                                <label class="form-label" for="ed-nombre-r-1" style="font-size: 18px;">Cambiar Contraseña</label>
+                                                <div class="input-group has-validation">
+                                                    <div class="position-relative" style="flex: 1;">
+                                                        <input id="ed-nombre-r-1" class="form-control" type="password" placeholder="Contraseña Nueva" style="border-radius: 6px;height: 50px;" />
+                                                        <i class="fas fa-eye position-absolute toggle-password" style="right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; z-index: 10;" data-target="ed-nombre-r-1"></i>
+                                                    </div>
+                                                    <div class="position-relative" style="flex: 1; margin-left: 12px;">
+                                                        <input id="ed-nombre-r-2" class="form-control" type="password" placeholder="Confirmar Contraseña" style="border-radius: 6px;height: 50px;" />
+                                                        <i class="fas fa-eye position-absolute toggle-password" style="right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; z-index: 10;" data-target="ed-nombre-r-2"></i>
+                                                    </div>
+                                                    <div class="input-group-text invalid-feedback"><span>Contraseña requerida.</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr class="my-4" />
+                                        <div class="my-3"></div>
+                                    </div>
+                                </div>
+                            </main>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer" style="background: rgb(248,249,252);">
+                <button id="guardar-eru" class="btn btn-primary" type="button">Guardar</button>
+                <button class="btn btn-light" data-bs-dismiss="modal" type="button">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL REGISTRAR USUARIO -->
+<div id="modal-ru" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <form id="form-ru" class="needs-validation" novalidate>
+                <div class="modal-header" style="background: rgb(248,249,252);">
+                    <h4 class="modal-title">Registrar Usuario</h4>
+                    <button class="btn-close focus-ring focus-ring-primary" aria-label="Cerrar" data-bs-dismiss="modal" type="button"></button>
+                </div>
+                <!-- Scroll solo en el body, el footer SIEMPRE visible -->
+                <div class="modal-body text-lg-center" style="max-height: 60vh; overflow-y: auto;">
+                    <h4 class="mb-3" id="usuario-nuevo-id-text">Usuario Nuevo ID ##</h4>
+                    <div class="row g-3">
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                            <label class="form-label" for="cedula-ru">Insertar Cedula</label>
+                            <input id="cedula-ru" class="form-control" type="text" placeholder="Cédula" required style="height: 50px;">
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                            <label class="form-label" for="multiSelect-ru">Roles</label>
+                            <div id="multiSelect-ru" class="coreui-ms-wrapper">
+                                <div id="selectedContainer-ru" class="coreui-ms-selected">
+                                    <span id="placeholder-ru" class="coreui-ms-placeholder">Selecciona roles...</span>
+                                </div>
+                                <div id="optionsList-ru" class="coreui-ms-options" style="max-height:180px;overflow-y:auto;">
+                                    <!-- Roles dinámicos por JS -->
+                                </div>
+                                <select id="hiddenSelect-ru" name="roles" multiple style="display:none;">
+                                    <!-- Opciones dinámicas por JS -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                            <label class="form-label" for="nombre1-ru" style="font-size: 18px;">Insertar Nombres</label>
+                            <div class="input-group has-validation">
+                                <input id="nombre1-ru" class="form-control" type="text" placeholder="Primer Nombre" required style="height: 50px; border-radius: 6px;">
+                                <input id="nombre2-ru" class="form-control" type="text" placeholder="Segundo Nombre" style="margin-left: 24px; height: 50px; border-radius: 6px;">
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                            <label class="form-label" for="apellido1-ru" style="font-size: 18px;">Insertar Apellidos</label>
+                            <div class="input-group has-validation">
+                                <input id="apellido1-ru" class="form-control" type="text" placeholder="Primer Apellido" required style="height: 50px; border-radius: 6px;">
+                                <input id="apellido2-ru" class="form-control" type="text" placeholder="Segundo Apellido" style="margin-left: 18px; height: 50px; border-radius: 6px;">
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                            <label class="form-label" for="contrasena1-ru" style="font-size: 18px;">Crear Contraseña</label>
+                            <div class="input-group has-validation">
+                                <div class="position-relative" style="flex: 1;">
+                                    <input id="contrasena1-ru" class="form-control" type="password" placeholder="Contraseña Nueva" required style="height: 50px; border-radius: 6px;">
+                                    <i class="fas fa-eye position-absolute toggle-password" style="right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; z-index: 10;" data-target="contrasena1-ru"></i>
+                                </div>
+                                <div class="position-relative" style="flex: 1; margin-left: 12px;">
+                                    <input id="contrasena2-ru" class="form-control" type="password" placeholder="Confirmar Contraseña" required style="height: 50px; border-radius: 6px;">
+                                    <i class="fas fa-eye position-absolute toggle-password" style="right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; z-index: 10;" data-target="contrasena2-ru"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="background: rgb(248,249,252);">
+                    <button class="btn btn-primary" type="submit">Registrar</button>
+                    <button class="btn btn-light" data-bs-dismiss="modal" type="button">Cerrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+<div>
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>© OSM 2025</span></div>
+                </div>
+            </footer>
+        </div>
+
+    <script src="../assets/js/auth_guard.js"></script>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/sidebar.js"></script>
+    <script src="assets/js/usuarios.js"></script>
+    <script src="assets/js/coreui-multiselect.min.js"></script>
+    <script src="assets/js/usuarios_table.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => { document.body.style.visibility = 'visible'; });
+    </script>
+    <script src="../assets/js/web_config.js"></script>
+</body>
+</html>

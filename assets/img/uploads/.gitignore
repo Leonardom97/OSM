@@ -1,0 +1,7 @@
+# Ignore uploaded images
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+!.gitkeep

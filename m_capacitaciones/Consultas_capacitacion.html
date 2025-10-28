@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>OSM</title>
+    <link rel="icon" type="image/png" sizes="697x475" href="../assets/img/Sin%20título-2.png">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="../assets/css/bs-theme-overrides.css">
+    <link rel="stylesheet" href="assets/css/consulta-cap.css">
+    <style>body { visibility: hidden; }</style>
+</head>
+<body id="page-top">
+    <div id="wrapper">
+        <div id="sidebar"></div>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <div id="navbar"></div>
+                <div class="container-fluid">
+                    <section class="consulta-cap-card">
+                        <div class="consulta-cap-toolbar">
+                            <span class="consulta-cap-title"><i class="fas fa-chalkboard-teacher"></i> Consulta Por Capacitaciones</span>
+                            <div class="consulta-cap-actions">
+                                <button class="consulta-cap-btn" id="clearFiltersBtn" title="Limpiar filtros"><i class="fas fa-broom"></i></button>
+                                <div class="consulta-cap-download-menu-wrapper">
+                                    <button class="consulta-cap-btn accent" id="downloadBtn" title="Descargar"><i class="fas fa-file-export"></i></button>
+                                    <div class="consulta-cap-download-menu" id="dropdownContent">
+                                        <button class="consulta-cap-download-item" id="downloadAll"><i class="fas fa-table"></i> Todo (.xlsx)</button>
+                                        <button class="consulta-cap-download-item" id="downloadFiltered"><i class="fas fa-filter"></i> Filtrado (.xlsx)</button>
+                                        <button class="consulta-cap-download-item" id="downloadSelected"><i class="fas fa-check-square"></i> Selección (.xlsx)</button>
+                                    </div>
+                                </div>
+                                <label class="consulta-cap-select-label">
+                                    Mostrar
+                                    <select id="limitSelect" class="consulta-cap-select">
+                                        <option value="10" selected>10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="consulta-cap-table-scroll">
+                            <table id="tabla" class="consulta-cap-table">
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" id="selectAll" title="Seleccionar todos"></th>
+                                        <th class="sortable" data-col="id">
+                                            <div class="consulta-cap-th-flex">
+                                                <span>Id</span>
+                                                <input class="consulta-cap-input" data-col="id" placeholder="Filtrar">
+                                                <i class="fas fa-sort icon-sort" data-col="id"></i>
+                                            </div>
+                                        </th>
+                                        <th class="sortable" data-col="capacitador">
+                                            <div class="consulta-cap-th-flex">
+                                                <span>Capacitador</span>
+                                                <input class="consulta-cap-input" data-col="capacitador" placeholder="Filtrar">
+                                                <i class="fas fa-sort icon-sort" data-col="capacitador"></i>
+                                            </div>
+                                        </th>
+                                        <th class="sortable" data-col="cedula">
+                                            <div class="consulta-cap-th-flex">
+                                                <span>Cédula</span>
+                                                <input class="consulta-cap-input" data-col="cedula" placeholder="Filtrar">
+                                                <i class="fas fa-sort icon-sort" data-col="cedula"></i>
+                                            </div>
+                                        </th>
+                                        <th class="sortable" data-col="tema">
+                                            <div class="consulta-cap-th-flex">
+                                                <span>Tema</span>
+                                                <input class="consulta-cap-input" data-col="tema" placeholder="Filtrar">
+                                                <i class="fas fa-sort icon-sort" data-col="tema"></i>
+                                            </div>
+                                        </th>
+                                        <th class="sortable" data-col="lugar">
+                                            <div class="consulta-cap-th-flex">
+                                                <span>Lugar</span>
+                                                <input class="consulta-cap-input" data-col="lugar" placeholder="Filtrar">
+                                                <i class="fas fa-sort icon-sort" data-col="lugar"></i>
+                                            </div>
+                                        </th>
+                                        <th class="sortable" data-col="actividad">
+                                            <div class="consulta-cap-th-flex">
+                                                <span>Actividad</span>
+                                                <input class="consulta-cap-input" data-col="actividad" placeholder="Filtrar">
+                                                <i class="fas fa-sort icon-sort" data-col="actividad"></i>
+                                            </div>
+                                        </th>
+                                        <th class="sortable" data-col="proceso">
+                                            <div class="consulta-cap-th-flex">
+                                                <span>Proceso</span>
+                                                <input class="consulta-cap-input" data-col="proceso" placeholder="Filtrar">
+                                                <i class="fas fa-sort icon-sort" data-col="proceso"></i>
+                                            </div>
+                                        </th>
+                                        <th class="sortable" data-col="fecha">
+                                            <div class="consulta-cap-th-flex">
+                                                <span>Fecha</span>
+                                                <input class="consulta-cap-input" data-col="fecha" placeholder="Filtrar">
+                                                <i class="fas fa-sort icon-sort" data-col="fecha"></i>
+                                            </div>
+                                        </th>
+                                        <th class="sortable" data-col="total_asistentes">
+                                            <div class="consulta-cap-th-flex">
+                                                <span>Asistentes</span>
+                                                <input class="consulta-cap-input" data-col="total_asistentes" placeholder="Filtrar">
+                                                <i class="fas fa-sort icon-sort" data-col="total_asistentes"></i>
+                                            </div>
+                                        </th>
+                                        <th class="sortable" data-col="registrado_por">
+                                            <div class="consulta-cap-th-flex">
+                                                <span>Registrado por</span>
+                                                <input class="consulta-cap-input" data-col="registrado_por" placeholder="Filtrar">
+                                                <i class="fas fa-sort icon-sort" data-col="registrado_por"></i>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- JS Render -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <nav id="bootstrap-pagination-nav" class="consulta-cap-pagination">
+                            <ul class="pagination"></ul>
+                        </nav>
+                    </section>
+                </div>
+            </div>
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>© OSM 2025</span></div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+
+    <script src="../assets/js/auth_guard.js"></script>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/sidebar.js"></script>
+    <script src="assets/js/capacitaciones.js"></script>
+    <script src="assets/js/consulta-cap.js"></script>
+    <script src="assets/js/xlsx.full.min.js"></script>
+    <script src="../assets/js/web_config.js"></script>
+</body>
+</html>

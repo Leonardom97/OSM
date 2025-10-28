@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="es-419">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>OSM</title>
+    <meta property="og:image" content="assets/img/Sin%20título-2.png">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/png" sizes="697x475" href="assets/img/Sin%20título-2.png">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/bs-theme-overrides.css">
+    <style>body { visibility: hidden; }</style>
+</head>
+
+<body id="page-top">
+    <script src="../assets/js/auth_guard.js"></script>
+    <div id="wrapper">
+        <div id="sidebar"></div> <!-- Sidebar dinámico -->
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <div id="navbar"></div> <!-- Navbar dinámico -->
+                <div class="container-fluid" id="panel">
+                    <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                        <h2 class="text-primary mb-0">Bienvenidos</h2>
+                    </div>
+                    <div class="row">
+
+                        <!-- Usuarios Registrados -->
+                        <div class="col-m d-6 col-xl-3" style="padding: 15px;">
+                            <div class="card shadow d-flex border-start-primary py-2 card-link" href="#">
+                                <div class="card-body py-2 border-start-primary">
+                                    <div class="row text-start justify-content-center align-items-center align-content-center align-self-center no-gutters" style="display: flex;">
+                                        <div class="col me-2">
+                                            <div class="text-uppercase fw-bold text-xs mb-1 text-primary" style="height: 30px;">USUARIOS REGISTRADOS</div>
+                                            <div class="text-dark fw-bold h5 mb-0" id="usuarios-registrados-panel"><span class="text-primary">--</span></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-user-shield fa-2x text-primary"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Usuarios Colaboradores -->
+                        <div class="col-md-6 col-xl-3" style="padding: 15px;">
+                            <div class="card shadow d-flex border-start-primary py-2 card-link" href="#">
+                                <div class="card-body py-2 border-start-primary">
+                                    <div class="row text-start justify-content-center align-items-center align-content-center align-self-center no-gutters" style="display: flex;">
+                                        <div class="col me-2">
+                                            <div class="text-uppercase fw-bold text-xs mb-1 text-primary" style="height: 30px;">USUARIOS COLABORADORES</div>
+                                            <div class="text-dark fw-bold h5 mb-0" id="usuarios-colaboradores-panel"><span class="text-primary">--</span></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-users fa-2x text-primary"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Capacitaciones Realizadas General -->
+                        <div class="col-md-6 col-xl-3" style="padding: 15px;">
+                            <div class="card shadow d-flex border-start-primary py-2 card-link" href="#">
+                                <div class="card-body py-2 border-start-primary">
+                                    <div class="row text-start justify-content-center align-items-center align-content-center align-self-center no-gutters" style="display: flex;">
+                                        <div class="col me-2">
+                                            <div class="text-uppercase fw-bold text-xs mb-1 text-primary" style="height: 30px;">CAPACITACIONES REALIZADAS GENERAL</div>
+                                            <div class="text-dark fw-bold h5 mb-0" id="capacitaciones-realizadas-panel"><span class="text-primary">--</span></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-file-invoice fa-2x text-primary"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Programacion Fecha Corte -->
+                        <div class="col-md-6 col-xl-3" style="padding: 15px;" data-role="Administrador">
+                            <a href="m_agronomia/f_cortes.html" style="text-decoration: none;">
+                                <div class="card shadow d-flex border-start-primary py-2 card-link">
+                                    <div class="card-body py-2 border-start-primary">
+                                        <div class="row text-start justify-content-center align-items-center align-content-center align-self-center no-gutters" style="display: flex;">
+                                            <div class="col me-2">
+                                                <div class="text-uppercase fw-bold text-xs mb-1 text-primary" style="height: 30px;">PROGRAMACION FECHA CORTE</div>
+                                                <div class="text-dark fw-bold h5 mb-0" id="fecha-corte-panel"><span class="text-primary">--</span></div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-calendar-alt fa-2x text-primary"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Tablas -->
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-5 col-xl-6 col-xxl-6 offset-lg-0 col-10 col-sm-10 col-md-8 col-lg-7 col-xl-6 pt-4">
+                            <div class="card shadow mb-4" id="capacitaciones_recientes" data-role="Administrador,Capacitador,Aux_Capacitador">
+                                <div class="card-header py-3">
+                                    <h5 class="fw-bold m-0 text-primary">Capacitaciones Recientes</h5>
+                                </div>
+                                <div class="container-fluid mt-4">
+                                    <div class="table-responsive" style="border-radius: 8px;position: static;border-bottom-right-radius: 27px;border-bottom-left-radius: 27px;border-top-left-radius: 10px;border-top-right-radius: 10px;border-right-width: 0px;">
+                                        <table class="table table-bordered table-striped" id="tabla-capacitaciones">
+                                            <thead class="table-primary">
+                                                <tr>
+                                                    <th class="text-bg-primary justify-content-center align-content-center align-self-center" style="background: var(--bs-card-border-color);">Nombre</th>
+                                                    <th class="text-bg-primary justify-content-center align-content-center align-self-center">Fecha&nbsp;</th>
+                                                    <th class="text-start text-bg-primary justify-content-center align-content-center align-self-center">Asistentes</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Capacitacion 1</td>
+                                                    <td>06/01/2025</td>
+                                                    <td>23</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Capacitacion 2</td>
+                                                    <td>08/03/2025</td>
+                                                    <td>12</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Capacitacion 3</td>
+                                                    <td>15/05/2025</td>
+                                                    <td>34</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Capacitacion 4</td>
+                                                    <td>21/01/2025</td>
+                                                    <td>21</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Capacitacion 5</td>
+                                                    <td>15/08/2024</td>
+                                                    <td>27</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-5 col-xl-6 col-xxl-6 offset-lg-0 col-10 col-sm-10 col-md-8 col-lg-7 col-xl-6 pt-4">
+                            <div class="card shadow mb-4" id="capacitaciones_recientes" data-role="Administrador,Capacitador,Aux_Capacitador">
+                                <div class="card-header py-3">
+                                    <h5 class="fw-bold m-0 text-primary">Registro Reciente Agronomía</h5>
+                                </div>
+                                <div class="container-fluid mt-4">
+                                    <div class="table-responsive" style="border-radius: 8px;position: static;border-bottom-right-radius: 27px;border-bottom-left-radius: 27px;border-top-left-radius: 10px;border-top-right-radius: 10px;border-right-width: 0px;">
+                                        <table class="table table-bordered table-striped" id="tabla-agronomia">
+                                            <thead class="table-primary">
+                                                <tr>
+                                                    <th class="text-bg-primary justify-content-center align-content-center align-self-center" style="background: var(--bs-card-border-color);">Nombre</th>
+                                                    <th class="text-bg-primary justify-content-center align-content-center align-self-center">Fecha&nbsp;</th>
+                                                    <th class="text-start text-bg-primary justify-content-center align-content-center align-self-center">Can. asistentes</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Capacitacion 1</td>
+                                                    <td>06/01/2025</td>
+                                                    <td>23</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Capacitacion 2</td>
+                                                    <td>08/03/2025</td>
+                                                    <td>12</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Capacitacion 3</td>
+                                                    <td>15/05/2025</td>
+                                                    <td>34</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Capacitacion 4</td>
+                                                    <td>21/01/2025</td>
+                                                    <td>21</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Capacitacion 5</td>
+                                                    <td>15/08/2024</td>
+                                                    <td>27</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="bg-white sticky-footer">
+                    <div class="container my-auto">
+                        <div class="text-center my-auto copyright"><span>© OSM 2025</span></div>
+                    </div>
+                </footer>
+            </div>
+            <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+        </div>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/sidebar.js"></script>
+        <script src="assets/js/navbar.js"></script>
+        <script src="assets/js/panel.js"></script>		
+    </div>
+    <script src="assets/js/web_config.js"></script>
+</body>
+
+</html>

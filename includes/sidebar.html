@@ -1,0 +1,85 @@
+<nav class="navbar align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0 navbar-dark" style="background: var(--bs-primary);">
+  <div class="container-fluid d-flex flex-column p-0">
+    <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="/panel.html" style="font-size: 29px;">OSM<div class="sidebar-brand-icon rotate-n-15"></div></a>
+    <hr class="sidebar-divider my-0">
+    <ul class="navbar-nav text-light" id="accordionSidebar">
+
+      <li class="nav-item">
+        <a class="nav-link" id="link_panel-principal" href="/panel.html">
+          <i class="fas fa-tachometer-alt"></i><span>Panel Principal</span>
+        </a>
+      </li>
+
+      <!-- ADMINISTRADOR -->
+      <li class="nav-item dropdown" data-role="administrador">
+        <a class="dropdown-toggle nav-link d-inline-block" aria-expanded="false" data-bs-toggle="dropdown" style="padding-top: 16px;padding-right: 8px;">
+          <i class="fas fa-cogs text-center"></i><span style="text-align: center;">Administrador</span>
+        </a>
+        <div class="dropdown-menu text-primary border-0 animated fadeIn" style="background: rgba(228,213,211,0.1);">
+          <a class="dropdown-item nav-link" href="/m_admin/ed_usuario.html" data-role="administrador">Usuarios Principales</a>
+          <a class="dropdown-item nav-link" href="/m_admin/ed_uscolaboradores.html" data-role="administrador">Usuarios Colaboradores</a>
+          <a class="dropdown-item nav-link" href="/sesiones.html" data-role="administrador">Gestión de Sesiones</a>
+          <a class="dropdown-item nav-link" href="/includes/web_main.html" data-role="administrador">Configuración Web</a>
+        </div>
+      </li>
+
+      <!-- CAPACITACIONES -->
+      <li class="nav-item dropdown" data-role="administrador,capacitador,aux_capacitador,capacitador_sie,capacitador_gh,capacitador_ti,capacitador_mt,capacitador_adm,capacitador_ind,capacitador_agr">
+        <a class="dropdown-toggle nav-link d-inline-block" aria-expanded="false" data-bs-toggle="dropdown" style="padding-top: 16px;padding-right: 8px;">
+          <i class="fas fa-table text-center"></i><span style="text-align: center;">Capacitaciones</span>
+        </a>
+        <div class="dropdown-menu text-primary border-0 animated FadeIn" style="background: rgba(228,213,211,0.1);">
+          <a class="dropdown-item nav-link" href="/m_capacitaciones/formulario.html" data-role="administrador,capacitador,aux_capacitador,capacitador_sie,capacitador_gh,capacitador_ti,capacitador_mt,capacitador_adm,capacitador_ind,capacitador_agr">Formulario</a>
+          <a class="dropdown-item nav-link" href="/m_capacitaciones/ed_formulario.html" data-role="administrador,capacitador,aux_capacitador,capacitador_sie,capacitador_gh,capacitador_ti,capacitador_mt,capacitador_adm,capacitador_ind,capacitador_agr">Edición Formulario</a>
+          <a class="dropdown-item nav-link" href="/m_capacitaciones/programacion.html" data-role="administrador,capacitador,aux_capacitador,capacitador_sie,capacitador_gh,capacitador_ti,capacitador_mt,capacitador_adm,capacitador_ind,capacitador_agr">Programación</a>
+          <a class="dropdown-item nav-link" href="/m_capacitaciones/Consultas_capacitacion.html" data-role="administrador,capacitador,aux_capacitador,capacitador_sie,capacitador_gh,capacitador_ti,capacitador_mt,capacitador_adm,capacitador_ind,capacitador_agr">Consulta por Capacitación</a>
+        </div>
+      </li>
+
+      <!-- AGRONOMÍA -->
+      <li class="nav-item dropdown" data-role="administrador,supervisor_agronomico,aux_agronomico,sup_logistica1">
+        <a class="dropdown-toggle nav-link d-inline-block" aria-expanded="false" data-bs-toggle="dropdown" style="padding-top: 16px;padding-right: 8px;">
+          <i class="fas fa-leaf text-center"></i><span style="text-align: center;">Agronomía</span>
+        </a>
+        <div class="dropdown-menu text-primary border-0 animated fadeIn" style="background: rgba(228,213,211,0.1);">
+          <a class="dropdown-item nav-link" href="/m_agronomia/tb_agronomia.html" data-role="administrador,supervisor_agronomico,aux_agronomico,sup_logistica1">Formulario</a>
+          <a class="dropdown-item nav-link" href="/m_agronomia/Consultas.html" data-role="administrador,supervisor_agronomico,aux_agronomico,sup_logistica1">Consulta</a>
+        </div>
+      </li>
+
+      <!-- BÁSCULA -->
+      <li class="nav-item dropdown" data-role="administrador,bascula,aux_bascula">
+        <a class="dropdown-toggle nav-link d-inline-block" aria-expanded="false" data-bs-toggle="dropdown" style="padding-top: 16px;padding-right: 8px;">
+          <i class="fas fa-weight text-center"></i><span style="text-align: center;">Báscula</span>
+        </a>
+        <div class="dropdown-menu text-primary border-0 animated fadeIn" style="background: rgba(228,213,211,0.1);">
+          <a class="dropdown-item nav-link" href="/m_bascula/pesaje.html" data-role="administrador,bascula,aux_bascula">Pesaje</a>
+          <a class="dropdown-item nav-link" href="/m_bascula/Consultas.html" data-role="administrador,bascula,aux_bascula">Consulta</a>
+        </div>
+      </li>
+
+      <!-- ALMACÉN -->
+      <li class="nav-item dropdown" data-role="administrador,almacen,aux_almacen">
+        <a class="dropdown-toggle nav-link d-inline-block" aria-expanded="false" data-bs-toggle="dropdown" style="padding-top: 16px;padding-right: 8px;">
+          <i class="fas fa-archive text-center"></i><span style="text-align: center;">Almacén</span>
+        </a>
+        <div class="dropdown-menu text-primary border-0 animated fadeIn" style="background: rgba(228,213,211,0.1);">
+          <a class="dropdown-item nav-link" href="/m_almacen/formulario.html" data-role="administrador,almacen,aux_almacen">Formulario</a>
+          <a class="dropdown-item nav-link" href="/m_almacen/Consultas.html" data-role="administrador,almacen,aux_almacen">Consulta</a>
+        </div>
+      </li>
+
+      <!-- USUARIOS -->
+      <li class="nav-item dropdown">
+        <a class="dropdown-toggle nav-link d-inline-block" aria-expanded="false" data-bs-toggle="dropdown" style="padding-top: 16px;padding-right: 8px;">
+          <i class="fas fa-user-cog text-center"></i><span style="text-align: center;">Usuarios</span>
+        </a>
+        <div class="dropdown-menu text-primary border-0 animated fadeIn" style="background: rgba(228,213,211,0.1);">
+          <a class="dropdown-item nav-link" href="/usuarios.html">Usuario</a>
+          <a class="dropdown-item nav-link" href="#">Consultas</a>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="es-419">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>OSM</title>
+    <meta property="og:image" content="../assets/img/Sin%20título-2.png">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/png" sizes="697x475" href="../assets/img/Sin%20título-2.png">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
+    <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="../assets/css/bs-theme-overrides.css">
+    <style>body { visibility: hidden; }</style>
+</head>
+
+<body id="page-top">
+<div id="wrapper">
+    <div id="sidebar"></div> <!-- Sidebar dinámico -->
+    <div class="d-flex flex-column" id="content-wrapper">
+        <div id="content">
+            <div id="navbar"></div> <!-- Navbar dinámico -->
+                <div class="container-fluid">
+                    <h3 class="text-dark mb-4">Editor de Registros</h3>
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold">Registros de Capacitaciones</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 text-nowrap">
+                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Mostrar<select class="d-inline-block form-select form-select-sm">
+                                                <option value="10" selected="">10</option>
+                                                <option value="25">25</option>
+                                                <option value="50">50</option>
+                                                <option value="100">100</option>
+                                            </select>&nbsp;</label></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-md-end dataTables_filter" id="dataTable_filter"><label class="form-label"><input type="search" id="buscar-rc" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Buscar "></label></div>
+                                </div>
+                            </div>
+                            <div class="table-responsive table mt-2" id="tabla-rc" role="grid" aria-describedby="dataTable_info">
+                                <!-- ID único para la tabla principal -->
+                                <table class="table my-0" id="dataTableCapacitaciones">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th class="text-center" style="background: var(--bs-primary);border-top-left-radius: 10px;border-bottom-left-radius: 10px;border-width: 1;color: var(--bs-body-bg);">Id</th>
+                                            <th class="text-center" style="background: var(--bs-primary);border-color: var(--bs-card-cap-bg);border-left-width: 1px;color: var(--bs-body-bg);">Capacitacion</th>
+                                            <th class="text-center" style="background: var(--bs-primary);border-color: var(--bs-card-cap-bg);border-left-width: 1px;color: var(--bs-body-bg);">Responsable</th>
+                                            <th class="text-center" style="background: var(--bs-primary);border-color: var(--bs-card-cap-bg);border-left-width: 1px;color: var(--bs-body-bg);">Cedula</th>
+                                            <th class="text-center" style="background: var(--bs-primary);border-color: var(--bs-card-cap-bg);border-left-width: 1px;color: var(--bs-body-bg);">Fecha</th>
+                                            <th class="text-center" style="background: var(--bs-primary);border-color: var(--bs-card-cap-bg);border-left-width: 1px;color: var(--bs-body-bg);">Asistentes</th>
+                                            <th class="text-center" style="background: var(--bs-primary);border-top-right-radius: 10px;border-bottom-right-radius: 10px;border-color: var(--bs-card-cap-bg);border-left-width: 1px;color: var(--bs-body-bg);">Opciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center" style="border-top-left-radius: 10px;text-align: center;">1</td>
+                                            <td class="text-center" style="border-left-width: 1px;border-left-color: var(--bs-primary-bg-subtle);text-align: center;">Tema 1</td>
+                                            <td class="text-center" style="border-left-width: 1px;border-left-color: var(--bs-primary-bg-subtle);text-align: center;">Nombre Apellido</td>
+                                            <td class="text-center" style="border-left-width: 1px;border-left-color: var(--bs-primary-bg-subtle);text-align: center;">112200939</td>
+                                            <td class="text-center" style="border-left-width: 1px;border-left-color: var(--bs-primary-bg-subtle);text-align: center;">2008/11/28</td>
+                                            <td class="text-center" style="border-left-width: 1px;border-left-color: var(--bs-primary-bg-subtle);text-align: center;">12</td>
+                                            <td class="text-center" style="border-top-right-radius: 10px;border-bottom-right-radius: 10px;border-left-width: 1px;border-left-color: var(--bs-primary-bg-subtle);">
+                                                <!-- Cambia id por clase -->
+                                                <button class="btn btn-primary bt_editar" type="button" style="margin-left: 5px;" data-bs-target="#modal-erc" data-bs-toggle="modal"><i class="far fa-edit"></i></button>
+                                                <button class="btn btn-danger bt_eliminar" type="button" style="margin-left: 5px;"><i class="far fa-trash-alt"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot class="text-center">
+                                        <tr>
+                                            <th class="text-center" style="background: var(--bs-primary);border-top-left-radius: 10px;border-bottom-left-radius: 10px;border-width: 1;color: var(--bs-body-bg);">Id</th>
+                                            <th class="text-center" style="background: var(--bs-primary);border-color: var(--bs-card-cap-bg);border-left-width: 1px;color: var(--bs-body-bg);">Capacitacion</th>
+                                            <th class="text-center" style="background: var(--bs-primary);border-color: var(--bs-card-cap-bg);border-left-width: 1px;color: var(--bs-body-bg);">Responsable</th>
+                                            <th class="text-center" style="background: var(--bs-primary);border-color: var(--bs-card-cap-bg);border-left-width: 1px;color: var(--bs-body-bg);">Cedula</th>
+                                            <th class="text-center" style="background: var(--bs-primary);border-color: var(--bs-card-cap-bg);border-left-width: 1px;color: var(--bs-body-bg);">Fecha</th>
+                                            <th class="text-center" style="background: var(--bs-primary);border-color: var(--bs-card-cap-bg);border-left-width: 1px;color: var(--bs-body-bg);">Asistentes</th>
+                                            <th class="text-center" style="background: var(--bs-primary);border-top-right-radius: 10px;border-bottom-right-radius: 10px;border-color: var(--bs-card-cap-bg);border-left-width: 1px;color: var(--bs-body-bg);">Opciones</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 align-self-center">
+                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Mostrando 1 a 10 de 27</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                        <ul class="pagination">
+                                            <li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
+                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" role="dialog" tabindex="-1" id="modal-erc">
+                    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable modal-fullscreen-xl-down" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background: rgb(248,249,252);">
+                                <h4 class="modal-title">Editor de Registro de Capacitación</h4><button class="btn-close focus-ring focus-ring-primary" type="button" aria-label="Guardar" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body text-lg-center">
+                                <div class="row g-5" style="background: var(--bs-body-bg);border-radius: 10px;">
+                                    <div class="col">
+                                        <main>
+                                            <div class="row g-5" style="background: var(--bs-body-bg);border-radius: 10px;">
+                                                <div class="col-md-12 col-lg-12 col-xl-12">
+                                                    <h4 class="mb-3">Capacitación ID ##</h4>
+                                                    <div id="tracking-info" class="alert alert-info" style="display:none; font-size: 0.9em;">
+                                                        <strong>Registro creado por:</strong> <span id="creador-nombre"></span><br>
+                                                        <strong>Última edición por:</strong> <span id="editor-nombre"></span>
+                                                    </div>
+                                                    <!-- Deja solo un formulario en el modal -->
+                                                    <form class="needs-validation" novalidate="" style="border-style: none;">
+                                                        <div class="row g-3">
+                                                            <div class="col-sm-6"><label class="form-label form-label" for="proceso">Proceso</label><select class="form-select form-select" id="ed-proceso" required="" placeholder="seleccionar">
+                                                                    <option value="">tipo</option>
+                                                                    <option value="">United States</option>
+                                                                </select>
+                                                                <div class="invalid-feedback"><span>Seleccionar tipo de proceso</span></div>
+                                                            </div>
+                                                            <div class="col-sm-6"><label class="form-label form-label" for="lugar-1">Lugar</label><select class="form-select form-select" id="ed-lugar" required="">
+                                                                    <option value="">Sitio</option>
+                                                                    <option value="">United States</option>
+                                                                </select>
+                                                                <div class="invalid-feedback"><span>Seleccionar sitio de capacitación</span></div>
+                                                            </div>
+                                                            <div class="col-12 col-md-12 col-lg-4"><label class="form-label form-label" for="cedula-r">Responsable Capacitacion</label>
+                                                                <div class="input-group has-validation"><button class="btn btn-primary link-primary" id="bt-responsable" type="button" style="border-color: var(--bs-btn-hover-border-color);"><i class="fas fa-search" style="font-size: 20px;color: var(--bs-body-bg);"></i></button><input class="form-control form-control" type="text" id="ed-cedula-r" placeholder="Cedula" required="">
+                                                                    <div class="input-group-text invalid-feedback"><span>Ingresar cedula del capacitador</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 col-xxl-8"><label class="form-label form-label" for="nombre-r">Nombre Responsable</label>
+                                                                <div class="input-group has-validation"><input class="form-control form-control" type="text" id="ed-nombre-r" placeholder="Nombre Capacitador" required="" style="margin-top: 0px;" readonly="">
+                                                                    <div class="input-group-text invalid-feedback"><span>Your username is required.</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6"><label class="form-label form-label" for="t-actividad">Tipo Actividad</label><select class="form-select form-select" id="edt-actividad" required="">
+                                                                    <option value="">tipo</option>
+                                                                    <option value="">United States</option>
+                                                                </select>
+                                                                <div class="invalid-feedback"><span>seleccione el tipo de actividad</span></div>
+                                                            </div>
+                                                            <div class="col-sm-6"><label class="form-label form-label" for="tema-a">Tema</label><select class="form-select form-select" id="ed-tema" required="">
+                                                                    <option value="">Sitio</option>
+                                                                    <option value="">United States</option>
+                                                                </select>
+                                                                <div class="invalid-feedback"><span>Seleccione el tema de la actividad</span></div>
+                                                            </div>
+                                                                <div class="col-md-5"><label class="form-label form-label" for="h-inicio">Hora Inicio</label><input class="form-control" id="ed-h-inico" type="time" required="">
+                                                                    <div class="invalid-feedback"><span>Ingrese Hora de Inicio</span></div>
+                                                                </div>
+                                                            <div class="col-md-4"><label class="form-label form-label" for="h-final">Hora Fin</label><input class="form-control" id="ed-h-final" type="time" required="">
+                                                                <div class="invalid-feedback"><span>Ingrese Hora de finalización&nbsp;</span></div>
+                                                            </div>
+                                                            <div class="col-md-3"><label class="form-label form-label" for="zip">Fecha</label><input class="form-control" id="ed-fecha" type="date" required="">
+                                                                <div class="invalid-feedback"><span>Ingresar la Fecha&nbsp;</span></div>
+                                                            </div>
+                                                            <div class="col-12"><label class="form-label form-label" for="address2">Observaciones</label><input class="form-control form-control" type="text" id="ed-observaciones" placeholder="Observaciones" required="" style="margin-top: 0px;height: 102px;"></div>
+                                                            <div class="col-12" id="file-section">
+                                                                <label class="form-label">Archivo Adjunto</label>
+                                                                <div id="current-file" style="display: none;">
+                                                                    <div class="alert alert-info d-flex justify-content-between align-items-center">
+                                                                        <div>
+                                                                            <i class="fas fa-file"></i>
+                                                                            <a href="#" id="file-link" target="_blank" class="ms-2">Ver archivo</a>
+                                                                            <span id="file-name" class="ms-2 text-muted"></span>
+                                                                        </div>
+                                                                        <button type="button" class="btn btn-sm btn-danger" onclick="deleteAttachedFile()">
+                                                                            <i class="fas fa-trash"></i> Eliminar
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="upload-file" style="display: none;">
+                                                                    <div class="input-group">
+                                                                        <input class="form-control" type="file" id="ed-archivo" accept=".pdf,.jpg,.jpeg,.png,.gif">
+                                                                        <button type="button" class="btn btn-primary" onclick="uploadFileToForm()">
+                                                                            <i class="fas fa-upload"></i> Subir
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="form-text">Formatos permitidos: PDF, JPG, PNG, GIF. Tamaño máximo: 2MB</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="card">
+                                                                    <div class="card-header py-3">
+                                                                        <p class="text-primary m-0 fw-bold" style="padding-bottom: 24px;font-size: 18px;"><span style="color: rgb(64, 64, 64);">Lista personal Capacitado ## </span></p>
+                                                                        <!-- Quita el form anidado, deja solo los campos -->
+                                                                        <div class="row justify-content-center g-3">
+                                                                            <div class="col-12 col-sm-11 col-md-12 col-lg-3 col-xl-3 col-xxl-3"><label class="form-label form-label" for="ced-capacitado">cedula</label>
+                                                                                <div class="input-group has-validation"><button class="btn btn-primary" id="bt-ag-capacitado-1" type="button" style="color: var(--bs-body-color);width: 49.797px;height: 37.5px;margin-top: 0px;padding: 6px 12px;padding-top: 5px;padding-right: 0px;padding-bottom: 10px;font-size: 15px;border-color: var(--bs-btn-hover-border-color);text-align: center;"><i class="far fa-check-circle" style="color: var(--bs-body-bg);font-size: 26px;"></i>&nbsp;&nbsp;</button><input class="form-control form-control" type="text" id="ced-cap-erc" placeholder="numero cedula persona capacitada">
+                                                                                    <div class="input-group-text invalid-feedback"><span>Ingresar cedula</span></div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-12 col-sm-11 col-md-12 col-lg-5 col-xxl-4"><label class="form-label form-label" for="asistentes-c">Nombre</label>
+                                                                                <div class="input-group has-validation"><input class="form-control form-control" type="text" id="nom-capacitado-erc" placeholder="nombre persona capacitada" required="" readonly=""></div>
+                                                                                <div class="invalid-feedback"><span>Your username is required.</span></div>
+                                                                            </div>
+                                                                            <div class="col-12 col-sm-11 col-md-12 col-lg-4 col-xl-4"><label class="form-label form-label" for="s-aprobacion">estado&nbsp;</label>
+                                                                                <div class="input-group has-validation"><select class="form-select form-select" id="s-aprobacion-erc" style="border-top-right-radius: 0;border-bottom-right-radius: 0;">
+    <option value="">Seleccione estado</option>
+    <option value="aprobo">aprobo</option>
+    <option value="no_aprobo">no aprobo</option>
+    <option value="no_aplica">no aplica</option>
+</select>
+                                                                                  <button class="btn btn-primary" id="bt-ag-capacitado-erc" type="button" style="width: 109.797px;height: 37.5px;margin-top: 0px;padding: 6px 12px;padding-top: 5px;padding-right: 0px;padding-bottom: 10px;border-color: var(--bs-btn-hover-border-color);color: var(--bs-body-bg);">Agregar&nbsp;&nbsp;<i class="fas fa-user-plus"></i></button>
+                                                                                    <div class="input-group-text invalid-feedback"><span>Ingresar estado de aprobación</span></div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="card-body">
+                                                                        <div class="row">
+                                                                            <div class="col-md-6 text-nowrap">
+                                                                                <div id="dataTable_length-1" class="dataTables_length" aria-controls="dataTable"></div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="text-md-end dataTables_filter" id="dataTable_filter-1"><label class="form-label"><input class="form-control form-control form-control-sm" type="search" aria-controls="dataTable" placeholder="Search"></label></div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="table-responsive table mt-2" id="ed-Table-pc" role="grid" aria-describedby="dataTable_info">
+                                                                            <!-- ID único para la tabla de personal capacitado -->
+                                                                            <table class="table my-0" id="dataTableAsistentes">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th class="text-center" style="background: var(--bs-primary);border-top-left-radius: 10px;border-bottom-left-radius: 10px;border-width: 1;color: var(--bs-body-bg);">Id</th>
+                                                                                        <th class="text-center" style="background: var(--bs-primary);border-color: var(--bs-card-cap-bg);border-left-width: 1px;color: var(--bs-body-bg);">Nombre</th>
+                                                                                        <th class="text-center" style="background: var(--bs-primary);border-color: var(--bs-card-cap-bg);border-left-width: 1px;color: var(--bs-body-bg);">Cedula</th>
+                                                                                        <th class="text-center" style="background: var(--bs-primary);border-color: var(--bs-card-cap-bg);border-left-width: 1px;color: var(--bs-body-bg);">Empresa</th>
+                                                                                        <th class="text-center" style="background: var(--bs-primary);border-color: var(--bs-card-cap-bg);border-left-width: 1px;color: var(--bs-body-bg);">Estado&nbsp;</th>
+                                                                                        <th class="text-center" style="background: var(--bs-primary);border-top-right-radius: 10px;border-bottom-right-radius: 10px;border-color: var(--bs-card-cap-bg);border-left-width: 1px;color: var(--bs-body-bg);">Opciones</th>
+                                                                                     </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td>1</td>
+                                                                                        <td>Nombre 1</td>
+                                                                                        <td>Cedula 1</td>
+                                                                                        <td>Empresa 1</td>
+                                                                                        <td>Aprobo</td>
+                                                                                        <td><button class="btn btn-danger bt_eliminar_asistente" type="button" style="margin-left: 5px;color: var(--bs-body-bg);"><i class="far fa-trash-alt"></i></button></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td>2</td>
+                                                                                        <td>Nombre 2</td>
+                                                                                        <td>Cedula 2</td>
+                                                                                        <td>Empresa 2</td>
+                                                                                        <td>Reprobo</td>
+                                                                                        <td><button class="btn btn-danger bt_eliminar_asistente" type="button" style="margin-left: 5px;color: var(--bs-body-bg);"><i class="far fa-trash-alt"></i></button></td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <hr class="my-4">
+                                                        <div class="my-3"></div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </main>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="modal-footer" style="background: rgb(248,249,252);">
+                            <button class="btn btn-primary" id="guardar-erc" type="button" style="color: var(--bs-body-bg);">Guardar</button>
+                            <button class="btn btn-light" type="button" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>© OSM 2025</span></div>
+                </div>
+            </footer>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+    <script src="../assets/js/auth_guard.js"></script>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/sidebar.js"></script>
+    <script src="assets/js/ed_formulario.js"></script>
+    <script src="assets/js/capacitaciones.js"></script>
+    <script src="../assets/js/web_config.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="es-419">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<title>OSM</title>
+	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+	<link rel="stylesheet" href="assets/css/bs-theme-overrides.css">
+	<style>
+		body { visibility: hidden; }
+				
+		
+	</style>
+</head>
+<body id="page-top">
+	<script src="assets/js/auth_guard.js"></script>
+	<div id="wrapper" class="d-flex">
+		<!-- Sidebar dinámico -->
+		<div id="sidebar"></div>
+
+		<div class="d-flex flex-column flex-grow-1" id="content-wrapper">
+			<!-- Navbar dinámico -->
+			<div id="navbar"></div>
+
+			<div id="content">
+				<div class="container-fluid">
+					<h3 class="text-dark mb-4">PANEL DE USUARIO</h3>
+					<div class="row mb-3">
+						<div class="col-lg-5">
+							<div class="card shadow mb-3">
+								<div class="card-header py-3">
+									<p class="text-primary m-0 fw-bold">Usuario</p>
+								</div>
+								<div class="card-body">
+									<form>
+										<div class="row">
+											<div class="col">
+												<div id="nombres" class="mb-3">
+													<label class="form-label" for="nombre_usr" style="color: rgb(0,0,0);"><strong>Nombres</strong></label>
+													<input class="form-control" type="text" id="nombre_usr" placeholder="Nombres" required="" readonly="">
+												</div>
+											</div>
+											<div class="col">
+												<div id="apellidos" class="mb-3">
+													<label class="form-label" for="apellido_usr" style="color: rgb(0,0,0);"><strong>Apellidos</strong></label>
+													<input class="form-control" type="text" id="apellido_usr" placeholder="Apellidos" required="" readonly="">
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col">
+												<div id="cedula" class="mb-3">
+													<label class="form-label" for="cedula_usr" style="color: rgb(0,0,0);"><strong>Cédula</strong></label>
+													<input class="form-control" type="text" id="cedula_usr" placeholder="Cédula" required="" readonly="">
+												</div>
+											</div>
+											<div class="col">
+												<div id="id_usuario" class="mb-3">
+													<label class="form-label" for="id_u" style="color: rgb(0,0,0);"><strong>ID Usuario</strong></label>
+													<input class="form-control" type="text" id="id_u" placeholder="ID" required="" readonly="">
+												</div>
+											</div>
+										</div>
+										<div class="mb-3"></div>
+									</form>
+								</div>
+							</div>
+							<!-- Sección adicional para colaboradores -->
+							<div class="card shadow mb-3" data-role="usuario">
+								<div class="card-header py-3">
+									<p class="text-primary m-0 fw-bold">Información Laboral</p>
+								</div>
+								<div class="card-body">
+									<form>
+										<div id="colaborador-section" style="display: none;">
+											<div class="row">
+												<div class="col">
+													<div class="mb-3">
+														<label class="form-label" style="color: rgb(0,0,0);"><strong>Empresa</strong></label>
+														<input class="form-control" type="text" id="empresa_txt" placeholder="Empresa" readonly="">
+													</div>
+												</div>
+												<div class="col">
+													<div class="mb-3">
+														<label class="form-label" style="color: rgb(0,0,0);"><strong>Situación</strong></label>
+														<input class="form-control" type="text" id="situacion_txt" placeholder="Situación" readonly="">
+													</div>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col">
+													<div class="mb-3">
+														<label class="form-label" style="color: rgb(0,0,0);"><strong>Cargo</strong></label>
+														<input class="form-control" type="text" id="cargo_txt" placeholder="Cargo" readonly="">
+													</div>
+												</div>
+												<div class="col">
+													<div class="mb-3">
+														<label class="form-label" style="color: rgb(0,0,0);"><strong>Rango</strong></label>
+														<input class="form-control" type="text" id="rango_txt" placeholder="Rango" readonly="">
+													</div>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col">
+													<div class="mb-3">
+														<label class="form-label" style="color: rgb(0,0,0);"><strong>Área</strong></label>
+														<input class="form-control" type="text" id="area_txt" placeholder="Área" readonly="">
+													</div>
+												</div>
+												<div class="col">
+													<div class="mb-3">
+														<label class="form-label" style="color: rgb(0,0,0);"><strong>Sub-Área</strong></label>
+														<input class="form-control" type="text" id="sub_area_txt" placeholder="Sub-Área" readonly="">
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="mb-3"></div>
+									</form>
+								</div>
+							</div>
+							<!-- fin Sección adicional para colaboradores -->
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="text-primary fw-bold m-0">Registro de Inicio de Sesión</h6>
+								</div>
+								<div class="card-body">
+									<div id="lastSessionsContainer">
+										<div class="text-center">
+											<div class="spinner-border spinner-border-sm" role="status">
+												<span class="visually-hidden">Cargando...</span>
+											</div>
+										</div>
+									</div>
+									<div class="text-center mt-3">
+										<button type="button" class="btn btn-primary btn-sm" id="btnVerMasSesiones">
+                      <i class="fas fa-list"></i> Ver Más
+                    </button>
+									</div>
+								</div>
+							</div>
+							<!-- fin Sección adicional para registro inicio secion -->
+						</div>
+
+						<div class="col-lg-7">
+							<div class="row">
+								<div class="col">
+
+									<div class="card shadow mb-4">
+										<div class="card-header py-3">
+											<h6 class="text-primary fw-bold m-0">Últimas Capacitaciones</h6>
+										</div>
+										<div class="card-body">
+											<div id="lastTrainingsContainer">
+												<div class="text-center">
+													<div class="spinner-border spinner-border-sm" role="status">
+														<span class="visually-hidden">Cargando...</span>
+													</div>
+												</div>
+											</div>
+											<div class="text-center mt-3">
+												<button type="button" class="btn btn-primary btn-sm" id="btnVerMasCapacitaciones">
+                      <i class="fas fa-list"></i> Ver Más
+                    </button>
+											</div>
+										</div>
+									</div>
+									<!-- Training Information Card -->
+									<div class="card shadow mb-3">
+										<div class="card-header py-3">
+											<p class="text-primary m-0 fw-bold">Capacitaciones</p>
+										</div>
+										<div class="card-body">
+											<ul class="nav nav-tabs" id="trainingTabs" role="tablist">
+												<li class="nav-item" role="presentation">
+													<button class="nav-link active" id="pending-tab" data-bs-toggle="tab" data-bs-target="#pending" type="button" role="tab">
+                            Pendientes
+                          </button>
+												</li>
+												<li class="nav-item" role="presentation">
+													<button class="nav-link" id="scheduled-tab" data-bs-toggle="tab" data-bs-target="#scheduled" type="button" role="tab">
+                            Programadas
+                          </button>
+												</li>
+											</ul>
+											<div class="tab-content mt-3" id="trainingTabContent">
+												<div class="tab-pane fade show active" id="pending" role="tabpanel">
+													<div id="pendingTrainingsContainer">
+														<div class="text-center">
+															<div class="spinner-border spinner-border-sm" role="status">
+																<span class="visually-hidden">Cargando...</span>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="tab-pane fade" id="scheduled" role="tabpanel">
+													<div id="scheduledTrainingsContainer">
+														<div class="text-center">
+															<div class="spinner-border spinner-border-sm" role="status">
+																<span class="visually-hidden">Cargando...</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<!-- Session History Card -->
+
+								</div>
+							</div>
+							<!-- row -->
+						</div>
+						<!-- col-lg-8 -->
+					</div>
+					<!-- row -->
+				</div>
+			</div>
+
+			<footer class="bg-white sticky-footer">
+				<div class="container my-auto">
+					<div class="text-center my-auto copyright"><span>© OSM 2025</span></div>
+				</div>
+			</footer>
+		</div>
+
+		<a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+	</div>
+
+	<!-- Modal for All Sessions History -->
+	<div class="modal fade" id="modalAllSessions" tabindex="-1" aria-labelledby="modalAllSessionsLabel" aria-hidden="true">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modalAllSessionsLabel">
+            <i class="fas fa-history"></i> Historial Completo de Sesiones
+          </h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="mb-3">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="input-group">
+									<span class="input-group-text"><i class="fas fa-search"></i></span>
+									<input type="text" class="form-control" id="searchSessionsInput" placeholder="Buscar en la tabla...">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
+						<table class="table table-striped table-hover table-sm" id="allSessionsTable">
+							<thead class="table-light sticky-top">
+								<tr>
+									<th class="sortable-session" data-column="fecha_inicio">
+										Fecha Inicio <i class="fas fa-sort"></i>
+									</th>
+									<th class="sortable-session" data-column="fecha_cierre">
+										Fecha Cierre <i class="fas fa-sort"></i>
+									</th>
+									<th class="sortable-session" data-column="ip_address">
+										Dirección IP <i class="fas fa-sort"></i>
+									</th>
+									<th class="sortable-session" data-column="host_name">
+										Ubicación/Host <i class="fas fa-sort"></i>
+									</th>
+									<th class="sortable-session" data-column="activa">
+										Estado <i class="fas fa-sort"></i>
+									</th>
+									<th class="sortable-session" data-column="duracion">
+										Duración <i class="fas fa-sort"></i>
+									</th>
+								</tr>
+							</thead>
+							<tbody id="allSessionsTableBody">
+								<tr>
+									<td colspan="6" class="text-center">
+										<div class="spinner-border spinner-border-sm" role="status">
+											<span class="visually-hidden">Cargando...</span>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="mt-2">
+						<small class="text-muted" id="sessionCountText">Total: 0 registros</small>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal for All Trainings History -->
+	<div class="modal fade" id="modalAllTrainings" tabindex="-1" aria-labelledby="modalAllTrainingsLabel" aria-hidden="true">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modalAllTrainingsLabel">
+            <i class="fas fa-graduation-cap"></i> Historial Completo de Capacitaciones
+          </h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="mb-3">
+						<div class="row">
+							<div class="col-md-8">
+								<div class="input-group">
+									<span class="input-group-text"><i class="fas fa-search"></i></span>
+									<input type="text" class="form-control" id="searchTrainingsInput" placeholder="Buscar en la tabla...">
+								</div>
+							</div>
+							<div class="col-md-4 text-end">
+								<button type="button" class="btn btn-success" id="btnExportToExcel">
+                  <i class="fas fa-file-excel"></i> Exportar a Excel
+                </button>
+							</div>
+						</div>
+					</div>
+					<div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
+						<table class="table table-striped table-hover table-sm" id="allTrainingsTable">
+							<thead class="table-light sticky-top">
+								<tr>
+									<th class="sortable" data-column="proceso">
+										Proceso <i class="fas fa-sort"></i>
+									</th>
+									<th class="sortable" data-column="lugar">
+										Lugar <i class="fas fa-sort"></i>
+									</th>
+									<th class="sortable" data-column="responsable_capacitacion">
+										Responsable Capacitación <i class="fas fa-sort"></i>
+									</th>
+									<th class="sortable" data-column="tema">
+										Tema <i class="fas fa-sort"></i>
+									</th>
+									<th class="sortable" data-column="tipo_actividad">
+										Tipo de Actividad <i class="fas fa-sort"></i>
+									</th>
+									<th class="sortable" data-column="fecha">
+										Fecha <i class="fas fa-sort"></i>
+									</th>
+									<th class="sortable" data-column="hora_inicio">
+										Hora Inicio <i class="fas fa-sort"></i>
+									</th>
+									<th class="sortable" data-column="hora_fin">
+										Hora Fin <i class="fas fa-sort"></i>
+									</th>
+									<th class="sortable" data-column="estado_aprovacion">
+										Estado Aprobación <i class="fas fa-sort"></i>
+									</th>
+									<th class="sortable" data-column="empresa">
+										Empresa <i class="fas fa-sort"></i>
+									</th>
+									<th class="sortable" data-column="cargo">
+										Cargo <i class="fas fa-sort"></i>
+									</th>
+									<th class="sortable" data-column="area">
+										Área <i class="fas fa-sort"></i>
+									</th>
+									<th class="sortable" data-column="sub_area">
+										Sub-Área <i class="fas fa-sort"></i>
+									</th>
+									<th class="sortable" data-column="rango">
+										Rango <i class="fas fa-sort"></i>
+									</th>
+									<th class="sortable" data-column="situacion">
+										Situación <i class="fas fa-sort"></i>
+									</th>
+								</tr>
+							</thead>
+							<tbody id="allTrainingsTableBody">
+								<tr>
+									<td colspan="15" class="text-center">
+										<div class="spinner-border spinner-border-sm" role="status">
+											<span class="visually-hidden">Cargando...</span>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="mt-2">
+						<small class="text-muted" id="trainingCountText">Total: 0 registros</small>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/sidebar.js"></script>
+	<script src="assets/js/navbar.js"></script>
+	<script src="assets/js/user_trainings.js"></script>
+	<script src="assets/js/xlsx.full.min.js"></script>
+	<script src="assets/js/web_config.js"></script>
+</body>
+</html>

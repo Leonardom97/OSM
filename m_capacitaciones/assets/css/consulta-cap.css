@@ -1,0 +1,283 @@
+body {
+  background: #fff;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0; padding: 0;
+  min-height: 100vh;
+}
+.consulta-cap-card {
+  max-width: 1350px;
+  margin: 40px auto 40px auto;
+  background: #fff;
+  border-radius: 32px;
+  box-shadow: 0 8px 38px 0 #772e2212, 0 1.5px 4px #39393913;
+  padding: 0 0 24px 0;
+  overflow: visible;
+  position: relative;
+}
+.consulta-cap-toolbar {
+  background: #772E22;
+  border-radius: 32px 32px 0 0;
+  color: #fff;
+  padding: 34px 42px 17px 42px;
+  display: flex;
+  align-items: center;
+  gap: 27px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.consulta-cap-title {
+  font-weight: 800;
+  font-size: 1.55rem;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  color: #fff;
+}
+.consulta-cap-toolbar .consulta-cap-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-left: auto;
+}
+.consulta-cap-toolbar .consulta-cap-actions > * {
+  margin: 0;
+}
+.consulta-cap-btn, .consulta-cap-btn:focus {
+  background: #fff;
+  color: #772E22;
+  border: none;
+  border-radius: 50%;
+  width: 41px;
+  height: 41px;
+  min-width: 41px;
+  font-size: 1.18rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.18s;
+  box-shadow: 0 2px 8px #772e2212;
+  cursor: pointer;
+  outline: none;
+}
+.consulta-cap-btn:hover {
+  background: #f3e6e4;
+}
+.consulta-cap-btn.accent {
+  background: #772E22;
+  color: #fff;
+}
+.consulta-cap-btn.accent:hover {
+  background: #393939;
+  color: #fff;
+}
+.consulta-cap-toolbar .consulta-cap-select-label {
+  font-weight: 700;
+  color: #fff;
+  font-size: 1.09rem;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.consulta-cap-select {
+  border-radius: 8px;
+  border: 2px solid #772E22;
+  padding: 6px 12px;
+  font-size: 1.03rem;
+  background: #fff;
+  color: #393939;
+  transition: border 0.18s;
+  box-shadow: 0 1.5px 9px #772e2220;
+}
+.consulta-cap-download-menu-wrapper {
+  position: relative;
+  display: inline-block;
+}
+.consulta-cap-download-menu {
+  position: absolute;
+  top: 54px;
+  right: 0;
+  min-width: 210px;
+  background: #fff;
+  box-shadow: 0 7px 20px #772e2217;
+  border-radius: 12px;
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.98) translateY(-12px);
+  transition: opacity 0.19s, transform 0.19s;
+}
+.consulta-cap-download-menu.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1) translateY(0);
+}
+.consulta-cap-download-item {
+  background: none;
+  border: none;
+  padding: 16px 18px;
+  width: 100%;
+  text-align: left;
+  color: #772E22;
+  font-weight: 700;
+  font-size: 1.01rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: background 0.17s, color 0.16s;
+}
+.consulta-cap-download-item:hover {
+  background: #f3e6e4;
+  color: #393939;
+}
+.consulta-cap-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 0;
+}
+.consulta-cap-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.09rem;
+  background: transparent;
+  margin: 0;
+}
+.consulta-cap-table thead th {
+  background: #f3e6e4 !important;
+  color: #772E22 !important;
+  font-weight: 700;
+  border: none;
+  padding: 13px 6px 7px 6px;
+  font-size: 1.03rem;
+  text-align: center !important;
+  vertical-align: middle !important;
+  border-bottom: 2px solid #cccccc;
+}
+.consulta-cap-th-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+}
+.consulta-cap-input {
+  background: #fff;
+  color: #772E22;
+  border-radius: 6px;
+  border: 1.5px solid #cccccc;
+  padding: 4px 8px;
+  margin-top: 3px;
+  font-size: 0.97rem;
+  transition: border 0.18s;
+  width: 85px;
+  text-align: center;
+}
+.consulta-cap-input:focus {
+  outline: none;
+  border-color: #772E22;
+}
+.icon-sort {
+  color: #cccccc !important;
+  margin-left: 6px;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: color 0.17s;
+}
+.icon-sort:hover {
+  color: #772E22 !important;
+}
+#selectAll {
+  width: 18px;
+  height: 18px;
+  accent-color: #772E22;
+  cursor: pointer;
+  margin-left: 3px;
+}
+.consulta-cap-table tbody tr:nth-child(even) {
+  background: #f5eaea82 !important;
+}
+.consulta-cap-table tbody tr {
+  background: #fff;
+  box-shadow: none;
+  border-radius: 0;
+  transition: background 0.13s;
+  overflow: hidden;
+}
+.consulta-cap-table tbody tr.selected {
+  background: #eecfc9 !important;
+  box-shadow: none;
+}
+.consulta-cap-table tbody tr:hover {
+  background: #f3e6e4 !important;
+}
+.consulta-cap-table td {
+  padding: 13px 10px;
+  background: transparent !important;
+  vertical-align: middle;
+  font-size: 1rem;
+  color: #393939;
+  border: none;
+  text-align: center;
+}
+.consulta-cap-pagination {
+  padding-top: 22px;
+  text-align: right;
+}
+.consulta-cap-pagination .pagination {
+  display: inline-flex;
+  gap: 2px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.consulta-cap-pagination .page-item .page-link {
+  background: #f3e6e4;
+  color: #772E22;
+  border-radius: 6px;
+  border: none;
+  margin: 0 2px;
+  padding: 8px 16px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.16s;
+  font-size: 1.07rem;
+  display: block;
+}
+.consulta-cap-pagination .page-item .page-link:hover {
+  background: #772E22;
+  color: #fff;
+}
+.consulta-cap-pagination .active .page-link {
+  background: #393939;
+  color: #fff;
+}
+.consulta-cap-pagination .disabled .page-link {
+  background: #cccccc;
+  color: #aaa;
+  cursor: not-allowed;
+}
+.consulta-cap-footer {
+  padding: 24px 0 8px 0;
+  text-align: center;
+  font-size: 1.09rem;
+  color: #772E22;
+  background: #f3e6e4;
+  border-radius: 0 0 32px 32px;
+  margin: 0 auto 0 auto;
+  box-shadow: 0 -2px 10px #88888811;
+  font-weight: 600;
+  max-width: 1350px;
+}
+@media (max-width: 900px) {
+  .consulta-cap-toolbar { padding: 16px 10px 7px 10px; }
+  .consulta-cap-table th, .consulta-cap-table td { padding: 7px 2px; font-size: 0.97rem;}
+  .consulta-cap-btn { padding: 9px 12px; font-size: 0.95rem;}
+}
+@media (max-width: 600px) {
+  .consulta-cap-footer { font-size: 0.9rem;}
+  .consulta-cap-title { font-size: 1.1rem;}
+}

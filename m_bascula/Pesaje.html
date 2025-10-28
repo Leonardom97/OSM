@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="es-419">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>OSM</title>
+    <meta property="og:image" content="../assets/img/Sin%20título-2.png">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/png" sizes="697x475" href="../assets/img/Sin%20título-2.png">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
+    <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="../assets/css/bs-theme-overrides.css">
+    <style>body { visibility: hidden; }</style>
+</head>
+
+<body id="page-top" body data-role="Administrador,Báscula,Aux_Báscula">
+    <div id="wrapper">
+    <div id="sidebar"></div> <!-- Sidebar dinámico -->
+    <div class="d-flex flex-column" id="content-wrapper">
+        <div id="content">
+            <div id="navbar"></div> <!-- Navbar dinámico -->
+                <div class="container-fluid">
+                    <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                        <h3 class="text-dark mb-0" style="color: #7e3f37;">Pesaje de Vehiculos</h3><a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#" style="background: #7e3f37;"><i class="fas fa-plus fa-sm text-white-50"></i>&nbsp; &nbsp;Añadir Registro</a>
+                    </div>
+                    <div class="card shadow" style="margin-bottom: 23px;">
+                        <div class="card-header py-3"><h5 class="tex-dark fw-bold m-0" style="color: #7e3f37 ; font-size:20px ">Pesajes Activos</h5></div>
+                        <div class="col-md-12 search-table-col" style="margin-top: 26px;">
+                            <div class="table-responsive table table-hover table-bordered results" style="margin-bottom: 0px;padding-right: 10px;padding-left: 10px;">
+                                <table class="table table-hover table-bordered">
+                                    <thead class="bill-header cs">
+                                        <tr style="border-color: var(--bs-table-bg);">
+                                            <th id="trs-hd-1" class="col-lg-1" style="background: rgb(126,63,55);border-top-left-radius: 20px;color: rgb(255,255,255);">ID</th>
+                                            <th id="trs-hd-2" class="col-lg-2" style="background: rgb(126,63,55);color: rgb(255,255,255);">Placa</th>
+                                            <th id="trs-hd-3" class="col-lg-3" style="background: rgb(126,63,55);width: 210px;color: rgb(255,255,255);">Responsable</th>
+                                            <th id="trs-hd-4" class="col-lg-2" style="background: rgb(126,63,55);color: rgb(255,255,255);">Hora Entrada</th>
+                                            <th id="trs-hd-5" class="col-lg-2" style="background: rgb(126,63,55);color: rgb(255,255,255);">Hora Salida</th>
+                                            <th id="trs-hd-6" class="col-lg-2" style="border-top-right-radius: 20px;background: rgb(126,63,55);color: rgb(255,255,255);">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody style="border-color: rgba(133,135,150,0);">
+                                        <tr style="border-color: rgba(133,135,150,0);background: rgb(245,245,245);border-bottom-left-radius: 20px;border-bottom-right-radius: 20px;">
+                                            <td style="border-bottom-left-radius: 20px;color: rgb(59,59,59);">0199982</td>
+                                            <td style="color: rgb(59,59,59);">Placa</td>
+                                            <td style="color: rgb(59,59,59);">Nombre</td>
+                                            <td style="color: rgb(59,59,59);">00:00</td>
+                                            <td style="color: rgb(59,59,59);">00:00</td>
+                                            <td style="border-bottom-right-radius: 20px;"><button class="btn btn-primary" style="margin-left: 5px;background: #7e3f37;" type="submit" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa fa-bars" style="font-size: 15px;"></i></button>
+                                                </div><button class="btn btn-primary" style="margin-left: 5px;background: rgb(59,97,231);" type="submit"><i class="fas fa-save" style="font-size: 15px;"></i></button><button class="btn btn-danger" style="margin-left: 5px;" type="submit"><i class="fas fa-times" style="font-size: 15px;"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="myModal" class="modal fadeIn">
+                                                    <div class="modal-dialog modal-fullscreen-xxl-down" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header" style="background: rgb(248,249,252);">
+                                                                <h4 class="modal-title">Pesaje ## </h4><button class="btn-close focus-ring focus-ring-primary" type="button" aria-label="Guardar" data-bs-dismiss="modal"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <div class="col-md-6 col-xl-3 mb-4" style="background: #ffffff;padding: 17px;border-width: 1px;width: 485px;margin: 1px;margin-right: 11px;">
+                                                                        <legend class="text-center" style="font-style: normal;font-weight: bold;font-size: 28px;font-family: Nunito, sans-serif;color: #7e3f37;">Datos Bascula</legend>
+                                                                        <div id="dataTable_length-4" class="dataTables_length" aria-controls="dataTable" style="padding-top: 5px;">
+                                                                            <div class="input-group" style="padding-top: 4px;padding-bottom: 8px;"><button class="btn" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" type="button" style="background: #d4d4d4;width: 115px;color: #7e3f37;font-family: 'Nunito Sans', sans-serif;text-align: center;" title="Seleccionar Placa del Vehiculo">Placa</button><select class="form-select d-inline-block form-select form-select-sm dropdown" id="SelectPlaca-7" style="padding: 3px 36px 4px 7px;padding-right: 0;border-radius: 104;border-style: double;font-size: 20px;margin: 0px;padding-left: 12px;" required="">
+                                                                                    <option value="" selected="" class="dropdown-item"></option>
+                                                                                    <option value="abc123" class="dropdown-item">abc123</option>
+                                                                                </select><button class="btn btn-primary py-0" id="btn-placa-1" type="button" style="background: #7e3f37;"><i class="fas fa-sync"></i></button></div>
+                                                                        </div>
+                                                                        <div id="dataTable_length-6" class="dataTables_length" aria-controls="dataTable" style="padding-top: 5px;">
+                                                                            <div class="input-group" style="padding-top: 4px;padding-bottom: 8px;"><button class="btn" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" type="button" style="background: #d4d4d4;width: 115px;color: #7e3f37;font-family: 'Nunito Sans', sans-serif;text-align: center;" title="Seleccionar Base de Datos">Empresa</button><select class="form-select d-inline-block form-select form-select-sm dropdown" id="SelectPlaca-3" style="padding: 3px 36px 4px 7px;padding-right: 0;border-radius: 104;border-style: double;font-size: 20px;margin: 0px;padding-left: 12px;" required="">
+                                                                                    <option value="" selected="" class="dropdown-item"></option>
+                                                                                    <option value="abc123" class="dropdown-item">abc123</option>
+                                                                                </select></div>
+                                                                        </div>
+                                                                        <div id="dataTable_length-1" class="dataTables_length" aria-controls="dataTable" style="padding-top: 5px;">
+                                                                            <div class="input-group" style="padding-top: 4px;padding-bottom: 8px;"><button class="btn" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" type="button" style="background: #d4d4d4;width: 115px;color: #7e3f37;font-family: 'Nunito Sans', sans-serif;text-align: center;" title="Capturar Peso Inicial">Peso Inicial</button><input class="form-control" type="text" style="font-size: 20px;background: rgb(255,255,255);" readonly="" required=""><button class="btn btn-primary py-0" id="btn-placa-2" type="button" style="background: #7e3f37;"><i class="fas fa-tachometer-alt"></i></button></div>
+                                                                        </div>
+                                                                        <div id="dataTable_length-2" class="dataTables_length" aria-controls="dataTable" style="padding-top: 5px;">
+                                                                            <div class="input-group" style="padding-top: 4px;padding-bottom: 8px;"><button class="btn" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" type="button" style="background: #d4d4d4;width: 115px;color: #7e3f37;font-family: 'Nunito Sans', sans-serif;text-align: center;" title="Capturar Peso Final">Peso Final</button><input class="form-control" type="text" style="font-size: 20px;background: rgb(255,255,255);" readonly="" required=""><button class="btn btn-primary py-0" id="btn-placa-3" type="button" style="background: #7e3f37;"><i class="fas fa-tachometer-alt"></i></button></div>
+                                                                        </div>
+                                                                        <div id="dataTable_length-11" class="dataTables_length" aria-controls="dataTable" style="padding-top: 5px;">
+                                                                            <div class="input-group" style="padding-top: 4px;padding-bottom: 8px;"><button class="btn" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" type="button" style="background: #d4d4d4;width: 115px;color: #7e3f37;font-family: 'Nunito Sans', sans-serif;text-align: center;" title="Nombre del Conductor">Conductor</button><input class="form-control" type="text" style="font-size: 20px;background: rgb(255,255,255);" readonly="" required=""></div>
+                                                                        </div>
+                                                                        <div id="dataTable_length-5" class="dataTables_length" aria-controls="dataTable" style="padding-top: 5px;">
+                                                                            <div class="input-group" style="padding-top: 4px;padding-bottom: 8px;"><button class="btn" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" type="button" style="background: #d4d4d4;width: 115px;color: #7e3f37;font-family: 'Nunito Sans', sans-serif;text-align: center;">N° Doc.</button><input class="form-control" type="text" style="font-size: 20px;background: rgb(255,255,255);" readonly="" required=""></div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col mb-4" style="background: #ffffff;padding: 17px;border-width: 1px;width: 467px;margin-left: 0px;margin-right: 10px;">
+                                                                        <legend class="text-center" style="font-style: normal;font-weight: bold;font-size: 28px;font-family: Nunito, sans-serif;color: #7e3f37;">Datos Producto</legend>
+                                                                        <div id="dataTable_length-3" class="dataTables_length" aria-controls="dataTable" style="padding-top: 5px;">
+                                                                            <div class="input-group" style="padding-top: 4px;padding-bottom: 8px;"><button class="btn" type="button" style="background: #d4d4d4;width: 115px;color: #7e3f37;font-family: 'Nunito Sans', sans-serif;text-align: center;">Transacción</button><select class="form-select d-inline-block form-select form-select-sm dropdown" id="SelectPlaca-9" style="padding: 3px 36px 4px 7px;padding-right: 0;border-radius: 104;border-style: double;font-size: 20px;margin: 0px;padding-left: 12px;" required="">
+                                                                                    <option value="" selected="" class="dropdown-item"></option>
+                                                                                    <option value="abc123" class="dropdown-item">abc123</option>
+                                                                                </select></div>
+                                                                        </div>
+                                                                        <div id="dataTable_length-15" class="dataTables_length" aria-controls="dataTable" style="padding-top: 5px;">
+                                                                            <div class="input-group" style="padding-top: 4px;padding-bottom: 8px;"><button class="btn" type="button" style="background: #d4d4d4;width: 115px;color: #7e3f37;font-family: 'Nunito Sans', sans-serif;text-align: center;">Procedencia</button><select class="form-select d-inline-block form-select form-select-sm dropdown" id="SelectPlaca-12" style="padding: 3px 36px 4px 7px;padding-right: 0;border-radius: 104;border-style: double;font-size: 20px;margin: 0px;padding-left: 12px;" required="">
+                                                                                    <option value="" selected="" class="dropdown-item"></option>
+                                                                                    <option value="abc123" class="dropdown-item">abc123</option>
+                                                                                </select></div>
+                                                                        </div>
+                                                                        <div id="dataTable_length-14" class="dataTables_length" aria-controls="dataTable" style="padding-top: 5px;">
+                                                                            <div class="input-group" style="padding-top: 4px;padding-bottom: 8px;"><button class="btn" type="button" style="background: #d4d4d4;width: 115px;color: #7e3f37;font-family: 'Nunito Sans', sans-serif;text-align: center;">Producto</button><select class="form-select d-inline-block form-select form-select-sm dropdown" id="SelectPlaca-11" style="padding: 3px 36px 4px 7px;padding-right: 0;border-radius: 104;border-style: double;font-size: 20px;margin: 0px;padding-left: 12px;" required="">
+                                                                                    <option value="" selected="" class="dropdown-item"></option>
+                                                                                    <option value="abc123" class="dropdown-item">abc123</option>
+                                                                                </select></div>
+                                                                        </div>
+                                                                        <div id="dataTable_length-13" class="dataTables_length" aria-controls="dataTable" style="padding-top: 5px;">
+                                                                            <div class="input-group" style="padding-top: 4px;padding-bottom: 8px;"><button class="btn" type="button" style="background: #d4d4d4;width: 115px;color: #7e3f37;font-family: 'Nunito Sans', sans-serif;text-align: center;">Doc. Origen</button><select class="form-select d-inline-block form-select form-select-sm dropdown" id="SelectPlaca-10" style="padding: 3px 36px 4px 7px;padding-right: 0;border-radius: 104;border-style: double;font-size: 20px;margin: 0px;padding-left: 12px;" required="">
+                                                                                    <option value="" selected="" class="dropdown-item"></option>
+                                                                                    <option value="abc123" class="dropdown-item">abc123</option>
+                                                                                </select></div>
+                                                                        </div>
+                                                                        <div id="dataTable_length-10" class="dataTables_length" aria-controls="dataTable" style="padding-top: 5px;">
+                                                                            <div class="input-group" style="padding-top: 4px;padding-bottom: 8px;"><button class="btn" type="button" style="background: #d4d4d4;width: 115px;color: #7e3f37;font-family: 'Nunito Sans', sans-serif;text-align: center;">Siembra</button><select class="form-select d-inline-block form-select form-select-sm dropdown" id="SelectPlaca-8" style="padding: 3px 36px 4px 7px;padding-right: 0;border-radius: 104;border-style: double;font-size: 20px;margin: 0px;padding-left: 12px;" required="">
+                                                                                    <option value="" selected="" class="dropdown-item"></option>
+                                                                                    <option value="abc123" class="dropdown-item">abc123</option>
+                                                                                </select></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer" style="background: #f8f5f5;box-shadow: 0px 0px 3px rgb(248,245,245);"><button class="btn btn-primary" type="submit" style="background: #7e3f37;border-style: none;color: rgb(255,255,255);font-family: Nunito, sans-serif;"><strong>Enviar</strong></button></div>
+                                                        </div>
+                                                    </div>
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>OSM 2023</span></div>
+                </div>
+            </footer>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+    <script src="../assets/js/auth_guard.js"></script>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/sidebar.js"></script>
+    <script src="assets/js/bascula.js"></script>
+    <script src="../assets/js/web_config.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<?php
+// Configura la respuesta como JSON
+header('Content-Type: application/json');
+// Incluye la conexión a la base de datos principal
+require_once 'db_postgres_prueba.php';
+
+// Decodifica el cuerpo recibido en JSON
+$data = json_decode(file_get_contents("php://input"), true);
+// Obtiene el ID del registro
+$id = $data['ct_cal_trampas_id'] ?? null;
+
+if ($id) {
+    // Marca el registro como inactivo usando el campo error_registro
+    $stmt = $pg->prepare("UPDATE ct_cal_trampas SET error_registro = 'inactivo' WHERE ct_cal_trampas_id = ?");
+    $ok = $stmt->execute([$id]);
+    if ($ok) {
+        echo json_encode([ "success" => true ]);
+    } else {
+        // Error en la consulta SQL
+        echo json_encode([ "success" => false, "error" => "Error en la consulta SQL" ]);
+    }
+} else {
+    // No se recibió un ID válido
+    echo json_encode([ "success" => false, "error" => "ID no válido" ]);
+}

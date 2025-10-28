@@ -1,0 +1,686 @@
+/* ==========================================================================
+   MATERIAL SUPER TABLE THEME (compact version)
+   Archivo completo con ajustes para filas / columnas más delgadas
+   y tipografía reducida. Si deseas volver a hacer más compacto,
+   descomenta el bloque "Compact EXTRA" casi al final.
+   ========================================================================== */
+
+.material-s {
+  font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.md-download-menu { display: none; position: absolute; }
+.md-download-menu.show { display: block; }
+
+.material-s .md-app {
+  min-height: 100vh;
+  width: 100vw;
+}
+
+/* Altura mínima previa (puedes eliminar si no la usas) */
+.md-table tbody tr {
+  height: 22px !important;
+  min-height: 18px !important;
+}
+
+/* ---------------------- BARRA DE TABS ---------------------- */
+.material-s .md-tabs-bar {
+  display: flex;
+  align-items: center;
+  background: #772E22;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(119,46,34,0.11);
+  margin: 40px auto 0 auto;
+  max-width: 1350px;
+  min-height: 65px;
+  padding-right: 10px;
+}
+.material-s .md-tabs-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.material-s .md-tabs-group {
+  display: flex;
+  gap: 4px;
+  margin-left: 16px;
+  overflow-x: auto;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none;
+  flex: 1;
+}
+.material-s .md-tabs-group::-webkit-scrollbar { display: none; }
+.material-s .md-tab-btn {
+  background: none;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-bottom: 3px solid transparent;
+  padding: 0.55rem 0.85rem;
+  border-radius: 12px;
+  transition: background 0.18s, color 0.16s, border-color 0.16s;
+  cursor: pointer;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  line-height: 1.1;
+}
+.material-s .md-tab-btn.active,
+.material-s .md-tab-btn:hover:not(.active) {
+  background: #fff;
+  color: #772E22;
+  border-bottom: 3px solid #9C5146;
+}
+.tab-arrow {
+  background: #9C5146;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 1.25rem;
+  margin: 0 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.14s;
+  z-index: 1;
+  user-select: none;
+}
+.tab-arrow:active, .tab-arrow:hover { background: #772E22; }
+.tab-arrow[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.md-tab-selector-btn {
+  background: #fff;
+  color: #772E22;
+  border: none;
+  border-radius: 8px;
+  margin-left: 10px;
+  padding: 6px 10px;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: background 0.18s;
+  box-shadow: 0 1px 6px rgba(119,46,34,0.11);
+  line-height: 1;
+}
+.md-tab-selector-btn:hover { background: #B87C78; color: #fff; }
+
+.md-tab-selector-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0; right:0; bottom:0;
+  background: rgba(0,0,0,0.25);
+  align-items: center;
+  justify-content: center;
+}
+.md-tab-selector-modal.show { display: flex; }
+.md-tab-selector-content {
+  background: #fff;
+  padding: 28px 20px 20px 20px;
+  border-radius: 16px;
+  min-width: 240px;
+  box-shadow: 0 4px 24px rgba(60,10,10,0.11);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.md-tab-selector-content h4 {
+  margin: 0 0 12px;
+  font-weight: 700;
+  color: #772E22;
+  font-size: 1.05rem;
+}
+.md-tab-selector-content label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+  font-size: 0.92rem;
+  cursor: pointer;
+  color: #772e22;
+  line-height: 1.1;
+}
+.md-tab-selector-content input[type="checkbox"] {
+  accent-color: #772E22;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+}
+.md-tab-selector-content .md-btn {
+  margin-top: 14px;
+  align-self: flex-end;
+  background: #772E22;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.18s;
+  line-height: 1.1;
+}
+.md-tab-selector-content .md-btn:hover { background: #9C5146; }
+
+/* ---------------------- TARJETA TABLA ---------------------- */
+.material-s .md-table-card {
+  background: #fff;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 8px 38px 0 rgba(119,46,34,0.11), 0 1.5px 4px rgba(60,10,10,0.09);
+  margin: 0 auto;
+  max-width: 1350px;
+  padding: 0 0 18px 0;
+}
+
+/* ---------------------- TOOLBAR ---------------------- */
+.material-s .md-table-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 28px 8px 28px;
+  background: #9C5146;
+  color: #fff;
+  gap: 10px;
+}
+.material-s .md-table-title {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #fff;
+  letter-spacing: 0.035em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  line-height: 1.1;
+}
+.material-s .md-table-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.material-s .md-btn {
+  background: #772E22;
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+  padding: 7px 14px;
+  transition: background 0.19s, box-shadow 0.18s;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  line-height: 1.1;
+  box-shadow: 0 1px 4px rgba(119,46,34,0.15);
+}
+.material-s .md-btn.md-btn-icon {
+  min-width: 30px;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: #772E22;
+  box-shadow: 0 1px 4px rgba(119,46,34,0.10);
+  justify-content: center;
+  font-size: 0.9rem;
+  border: 2px solid #772E22;
+}
+.material-s .md-btn.md-btn-icon.accent { background: #772e22; color: #fff; border: none; }
+.material-s .md-btn.md-btn-icon:hover {
+  background: #772E22;
+  color: #fff;
+  border: 2px solid #fff;
+}
+.material-s .md-btn.md-btn-icon.accent:hover { background: #9C5146; color: #fff; }
+
+.material-s .md-table-show {
+  font-weight: 600;
+  color: #fff;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  line-height: 1;
+}
+.material-s .md-select {
+  border-radius: 6px;
+  border: 2px solid #772E22;
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  background: #fff;
+  color: #222;
+  transition: border 0.18s;
+  box-shadow: 0 1px 5px #772E2220;
+  line-height: 1.1;
+}
+
+/* ---------------------- MENÚ DESCARGA ---------------------- */
+.material-s .md-download-menu-wrapper { position: relative; display: inline-block; }
+.material-s .md-download-menu {
+  position: absolute;
+  top: 44px;
+  right: 0;
+  min-width: 180px;
+  background: #fff;
+  box-shadow: 0 7px 20px rgba(119,46,34,0.17);
+  border-radius: 10px;
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.98) translateY(-10px);
+  transition: opacity 0.19s, transform 0.19s;
+}
+.material-s .md-download-menu.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1) translateY(0);
+}
+.material-s .md-download-item {
+  background: none;
+  border: none;
+  padding: 10px 14px;
+  width: 100%;
+  text-align: left;
+  color: #772E22;
+  font-weight: 600;
+  font-size: 11px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.17s, color 0.16s;
+  line-height: 1.1;
+}
+.material-s .md-download-item:hover { background: #e5c1bda8; color: #772E22; }
+
+/* (Duplicados defensivos) */
+.md-download-menu {
+  display: none;
+  position: absolute;
+  background: #fff;
+  border: 1px solid #cecece;
+  z-index: 999;
+  min-width: 200px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  margin-top: 5px;
+}
+.md-download-menu.show { display: block; }
+
+/* ---------------------- SCROLL TABLA ---------------------- */
+.material-s .md-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 0;
+  padding: 0 10px;
+  max-height: 70vh;
+}
+
+/* ---------------------- TABLA BASE ---------------------- */
+.material-s .md-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13px;
+  background: transparent;
+  box-shadow: 0 2px 12px rgba(119,46,34,0.09);
+  min-width: 500px;
+  margin: 8px 0 6px;
+  line-height: 1.15;
+}
+.material-s .md-table thead th > .md-th-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+.material-s .md-table thead th {
+  background: #D6B2AE !important;
+  color: #772E22 !important;
+  font-weight: 700;
+  padding: 6px 6px;
+  font-size: 13px;
+  text-align: center !important;
+  vertical-align: middle !important;
+  letter-spacing: 0.01em;
+  border-bottom: 2px solid #BDBDBD;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.15;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.1);
+}
+
+.material-s .md-table .md-input {
+  background: #fff;
+  color: #772E22;
+  border-radius: 5px;
+  border: 1.2px solid #BDBDBD;
+  padding: 4px 6px;
+  margin: 0 auto;
+  font-size: 12px;
+  transition: border 0.18s;
+  width: 90%;
+  max-width: 140px;
+  text-align: center;
+  min-height: 24px;
+  box-sizing: border-box;
+  display: block;
+  line-height: 1.05;
+}
+.material-s .md-table .md-input:focus {
+  outline: none;
+  border-color: #772E22;
+}
+
+.material-s .md-table .icon-sort {
+  color: #646464 !important;
+  margin-left: 0;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: color 0.17s;
+  align-self: center;
+  line-height: 1;
+}
+.material-s .md-table .icon-sort.active { color: #772E22 !important; }
+
+.material-s .md-table .md-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: #9C5146;
+  cursor: pointer;
+  margin-left: 2px;
+}
+
+.material-s .md-table tbody tr:nth-child(even) { background: #f1f1f1 !important; }
+.material-s .md-table tbody tr {
+  background: #fff;
+  box-shadow: none;
+  border-radius: 0;
+  transition: background 0.13s;
+  overflow: hidden;
+}
+.material-s .md-table tbody tr:not(:last-child) {
+  border-bottom: 1px solid #e3e3e3;
+}
+.material-s .md-table tbody tr.selected { background: #B87C78 !important; }
+.material-s .md-table tbody tr:hover { background: #e5c1bda8 !important; }
+
+.material-s .md-table td {
+  padding: 5px 6px;
+  background: transparent !important;
+  vertical-align: middle;
+  font-size: 12.5px;
+  color: #222;
+  text-align: center;
+  line-height: 1.15;
+  min-height: 28px;
+  white-space: nowrap;
+}
+
+/* Ajuste especial íconos supervision para modo compacto */
+.material-s .md-table td .supervision-icon {
+  font-size: 14px !important;
+  line-height: 1;
+}
+
+/* Limitar ancho (opcional) de primera col / IDs */
+.material-s .md-table td:nth-child(1),
+.material-s .md-table th:nth-child(1) {
+  max-width: 70px;
+  width: 70px;
+}
+
+/* ---------------------- PAGINACIÓN ---------------------- */
+.material-s .md-pagination {
+  padding-top: 10px;
+  text-align: right;
+}
+.material-s .md-pagination-list {
+  display: inline-flex;
+  gap: 2px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.material-s .md-pagination-list li { display: inline-block; }
+.material-s .md-pagination-list .page-link {
+  background: #D6B2AE;
+  color: #772E22;
+  border-radius: 6px;
+  border: none;
+  margin: 0 2px;
+  padding: 6px 12px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.16s;
+  font-size: 12.5px;
+  display: block;
+  line-height: 1.1;
+}
+.material-s .md-pagination-list .page-link:hover {
+  background: #772E22;
+  color: #fff;
+}
+.material-s .md-pagination-list .active .page-link {
+  background: #9C5146;
+  color: #fff;
+}
+.material-s .md-pagination-list .disabled .page-link {
+  background: #E2E2E2;
+  color: #BDBDBD;
+  cursor: not-allowed;
+}
+
+/* ---------------------- FOOTER ---------------------- */
+.material-s .md-footer {
+  padding: 16px 0 6px 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #772E22;
+  background: #D6B2AE;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  margin: 40px auto 0 auto;
+  box-shadow: 0 -2px 10px rgba(119,46,34,0.04);
+  font-weight: 600;
+  max-width: 1350px;
+  line-height: 1.1;
+}
+
+/* ---------------------- NOTIFICACIONES (CAMPANA) ---------------------- */
+.md-notify-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: none;
+  background: transparent;
+  color: #ededed;
+  cursor: pointer;
+  font-size: 1.05rem;
+}
+.md-notify-btn:hover { color: #fff; }
+.md-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background: #dc3545;
+  color: #fff;
+  border-radius: 10px;
+  padding: 0 6px;
+  font-size: 11px;
+  line-height: 16px;
+  min-width: 16px;
+  text-align: center;
+  display: none;
+}
+
+/* ---------------------- MODALES DE PENDIENTES ---------------------- */
+#modal-pendientes-mantenimientos table,
+#modal-pendientes-mantenimientos table.table {
+  font-size: 12.5px;
+  line-height: 1.15;
+}
+#modal-pendientes-mantenimientos table thead th {
+  padding: 6px 6px;
+  font-size: 12.5px;
+}
+#modal-pendientes-mantenimientos table tbody td {
+  padding: 5px 6px;
+  font-size: 12px;
+}
+
+/* ---------------------- RESPONSIVE ---------------------- */
+@media (max-width: 900px) {
+  .material-s .md-tabs-bar { min-height: 54px; }
+  .material-s .md-tab-btn { font-size: 0.85rem; padding: 0.5rem 0.7rem; }
+  .material-s .md-table-toolbar { padding: 8px 12px; }
+  .material-s .md-table thead th,
+  .material-s .md-table td { padding: 5px 4px; font-size: 11.5px; }
+  .material-s .md-table { font-size: 11.5px; }
+  .material-s .md-btn { padding: 6px 10px; font-size: 0.75rem; }
+  .material-s .md-select { font-size: 0.75rem; padding: 4px 6px; }
+  .material-s .md-table .md-input { width: 95%; max-width: 110px; font-size: 11px; padding: 4px; }
+  .material-s .md-btn.md-btn-icon { width: 28px; height: 28px; font-size: 0.85rem; }
+}
+
+@media (max-width: 600px) {
+  .material-s .md-tabs-group {
+    flex-direction: column;
+    gap: 0;
+    margin-right: 0;
+    width: 100%;
+  }
+  .material-s .md-tab-btn { font-size: 0.8rem; }
+  .material-s .md-footer { font-size: 0.7rem; }
+  .material-s .md-table-scroll {
+    overflow-x: auto;
+    width: 100%;
+    margin-left: -2px;
+    padding: 0 4px;
+  }
+  .material-s .md-table {
+    min-width: 300px;
+    font-size: 11px;
+  }
+
+  .material-s .md-table thead th,
+  .material-s .md-table tbody td {
+    padding: 4px 3px !important;
+    font-size: 10.8px !important;
+    line-height: 1.05;
+  }
+  .material-s .md-table .md-input {
+    width: 80%;
+    max-width: 90px;
+    padding: 3px 4px;
+    font-size: 10px;
+  }
+  .material-s .md-btn,
+  .material-s .md-btn.md-btn-icon,
+  .material-s .md-select {
+    font-size: 0.7rem;
+    min-height: 22px;
+  }
+}
+
+/* ---------------------- SUPER COMPACT (activar con body.super-compact) ---------------------- */
+body.super-compact .material-s .md-table,
+.material-s .md-table.super-compact {
+  font-size: 12px;
+  line-height: 1.1;
+}
+body.super-compact .material-s .md-table thead th,
+.material-s .md-table.super-compact thead th {
+  padding: 4px 5px !important;
+  font-size: 12px !important;
+}
+body.super-compact .material-s .md-table tbody td,
+.material-s .md-table.super-compact tbody td {
+  padding: 4px 5px !important;
+  font-size: 11.5px;
+  line-height: 1.1;
+}
+
+/* ...tu CSS existente... */
+/* Oculta "Visualizar" solo para auxiliares, pero no para administradores */
+body[data-role*="aux_agronomico"]:not([data-role*="administrador"]):not([data-role*="admin"]):not([data-role*="administrator"]) .btn-visualizar,
+body[data-role*="aux_agronomico"]:not([data-role*="administrador"]):not([data-role*="admin"]):not([data-role*="administrator"]) .btn-ver {
+  display: none !important;
+}
+
+
+
+/* Ocultar aprobar/rechazar SOLO si el usuario es aux_agronomico y NO es admin */
+body[data-role*="aux_agronomico"]:not([data-role*="administrador"]):not([data-role*="admin"]):not([data-role*="administrator"]) .btn-aprobar,
+body[data-role*="aux_agronomico"]:not([data-role*="administrador"]):not([data-role*="admin"]):not([data-role*="administrator"]) .btn-rechazar {
+  display: none !important;
+}
+
+
+/* ...otros estilos previos... */
+
+/* Menú de exportar tablas */
+.md-table-download-menu-wrapper {
+  display: inline-block;
+  position: relative;
+}
+.md-table-download-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 110%;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  z-index: 10;
+  padding: 8px 0;
+  min-width: 170px;
+}
+.md-table-download-menu.open { display: block; }
+.md-table-download-item {
+  display: block;
+  background: none;
+  border: none;
+  text-align: left;
+  width: 100%;
+  padding: 8px 16px;
+  font-size: 15px;
+  cursor: pointer;
+  color: #7b2c22;
+}
+.md-table-download-item:hover { background: #f4f4f4; }
+.md-btn.accent { color: #fff !important; background: #7b2c22 !important; }
+
+/* =======================================================================
+   FIN DEL ARCHIVO
+   ======================================================================= */

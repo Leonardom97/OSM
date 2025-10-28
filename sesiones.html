@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="es-419">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Gestión de Sesiones - OSM</title>
+    <link rel="icon" type="image/png" sizes="697x475" href="assets/img/Sin%20título-2.png">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/bs-theme-overrides.css">
+    <style>body { visibility: hidden; }</style>
+</head>
+
+<body id="page-top" data-role="Administrador">
+    <script src="assets/js/auth_guard.js"></script>
+
+    <div id="wrapper">
+        <div id="sidebar"></div> <!-- Sidebar dinámico -->
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <div id="navbar"></div> <!-- Navbar dinámico -->
+
+                <div class="container-fluid">
+                    <h3 class="text-dark mb-4">Gestión de Sesiones</h3>
+
+                    <!-- Tabs for different views -->
+                    <ul class="nav nav-tabs" id="sessionTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="active-tab" data-bs-toggle="tab" data-bs-target="#active" type="button" role="tab">
+                                <i class="fas fa-users"></i> Sesiones Activas
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="attempts-tab" data-bs-toggle="tab" data-bs-target="#attempts" type="button" role="tab">
+                                <i class="fas fa-shield-alt"></i> Intentos de Acceso
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="history-tab" data-bs-toggle="tab" data-bs-target="#history" type="button" role="tab">
+                                <i class="fas fa-history"></i> Mi Historial
+                            </button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="sessionTabContent">
+                        <!-- Active Sessions Tab -->
+                        <div class="tab-pane fade show active" id="active" role="tabpanel">
+                            <div class="card shadow mt-3">
+                                <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                                    <h6 class="text-primary m-0 fw-bold">Sesiones Activas</h6>
+                                    <button class="btn btn-sm btn-primary" id="refreshActiveBtn">
+                                        <i class="fas fa-sync"></i> Actualizar
+                                    </button>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Usuario</th>
+                                                    <th>Identificador</th>
+                                                    <th>Tipo</th>
+                                                    <th>IP</th>
+                                                    <th>Host</th>
+                                                    <th>Inicio</th>
+                                                    <th>Última Actividad</th>
+                                                    <th>Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="activeSessionsTable">
+                                                <tr>
+                                                    <td colspan="8" class="text-center">
+                                                        <div class="spinner-border" role="status">
+                                                            <span class="visually-hidden">Cargando...</span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Login Attempts Tab -->
+                        <div class="tab-pane fade" id="attempts" role="tabpanel">
+                            <div class="card shadow mt-3">
+                                <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                                    <h6 class="text-primary m-0 fw-bold">Intentos de Acceso</h6>
+                                    <div>
+                                        <select class="form-select form-select-sm d-inline-block w-auto" id="attemptFilter">
+                                            <option value="">Todos</option>
+                                            <option value="true">Exitosos</option>
+                                            <option value="false">Fallidos</option>
+                                        </select>
+                                        <button class="btn btn-sm btn-primary ms-2" id="refreshAttemptsBtn">
+                                            <i class="fas fa-sync"></i> Actualizar
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th>Usuario</th>
+                                                    <th>Tipo</th>
+                                                    <th>Estado</th>
+                                                    <th>IP</th>
+                                                    <th>Host</th>
+                                                    <th>Mensaje</th>
+                                                    <th>Fecha</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="loginAttemptsTable">
+                                                <tr>
+                                                    <td colspan="7" class="text-center">
+                                                        <div class="spinner-border" role="status">
+                                                            <span class="visually-hidden">Cargando...</span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- My History Tab -->
+                        <div class="tab-pane fade" id="history" role="tabpanel">
+                            <div class="card shadow mt-3">
+                                <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                                    <h6 class="text-primary m-0 fw-bold">Mi Historial de Sesiones</h6>
+                                    <button class="btn btn-sm btn-primary" id="refreshHistoryBtn">
+                                        <i class="fas fa-sync"></i> Actualizar
+                                    </button>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>IP</th>
+                                                    <th>Host</th>
+                                                    <th>Inicio</th>
+                                                    <th>Cierre</th>
+                                                    <th>Estado</th>
+                                                    <th>Razón de Cierre</th>
+                                                    <th>Cerrada Por</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="myHistoryTable">
+                                                <tr>
+                                                    <td colspan="7" class="text-center">
+                                                        <div class="spinner-border" role="status">
+                                                            <span class="visually-hidden">Cargando...</span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>© OSM 2025</span></div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Disconnect Confirmation Modal -->
+    <div class="modal fade" id="disconnectModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmar Desconexión</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Está seguro que desea desconectar al usuario <strong id="disconnectUserName"></strong>?</p>
+                    <p class="text-muted">El usuario será notificado que su sesión fue cerrada por un administrador.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="confirmDisconnect">Desconectar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/sidebar.js"></script>
+    <script src="assets/js/sesiones.js"></script>
+    <script src="assets/js/navbar.js"></script>
+    <script src="assets/js/web_config.js"></script>
+</body>
+</html>

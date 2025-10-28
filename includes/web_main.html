@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="es-419">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>OSM - Configuración Web</title>
+    <link rel="icon" type="image/png" sizes="697x475" href="/assets/img/Sin%20título-2.png">
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/assets/css/bs-theme-overrides.css">
+    <style>
+        body { visibility: hidden; }
+        .color-preview {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .theme-card {
+            transition: all 0.3s ease;
+        }
+        .theme-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .theme-card.active {
+            border: 3px solid var(--bs-primary);
+        }
+        .image-preview {
+            max-width: 200px;
+            max-height: 200px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body id="page-top" data-role="administrador">
+    <div id="wrapper">
+        <div id="sidebar"></div>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <div id="navbar"></div>
+                
+                <div class="container-fluid">
+                    <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                        <h2 class="text-primary mb-0">Configuración Web Principal</h2>
+                    </div>
+                    
+                    <!-- Alert messages -->
+                    <div id="alertContainer"></div>
+                    
+                    <!-- Current Configuration -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 fw-bold text-primary">Configuración Actual</h6>
+                        </div>
+                        <div class="card-body">
+                            <form id="configForm">
+                                <input type="hidden" id="configId" name="id">
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="siteTitle" class="form-label fw-bold">Título del Sitio</label>
+                                        <input type="text" class="form-control" id="siteTitle" name="site_title" required maxlength="100">
+                                        <small class="form-text text-muted">Aparece en la pestaña del navegador</small>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <label for="footerText" class="form-label fw-bold">Texto del Footer</label>
+                                        <input type="text" class="form-control" id="footerText" name="footer_text" required maxlength="200">
+                                        <small class="form-text text-muted">Aparece en el pie de página de todas las páginas</small>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="primaryColor" class="form-label fw-bold">Color Principal</label>
+                                        <div class="input-group">
+                                            <input type="color" class="form-control form-control-color" id="primaryColor" name="primary_color" required>
+                                            <input type="text" class="form-control" id="primaryColorHex" maxlength="7" pattern="^#[0-9A-Fa-f]{6}$">
+                                        </div>
+                                        <small class="form-text text-muted">Color principal del tema (afecta botones, enlaces, sidebar, etc.)</small>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <label for="themeName" class="form-label fw-bold">Nombre del Tema</label>
+                                        <input type="text" class="form-control" id="themeName" name="theme_name" maxlength="50">
+                                        <small class="form-text text-muted">Nombre descriptivo para identificar este tema</small>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">Icono del Sitio (Favicon)</label>
+                                        <div class="input-group mb-2">
+                                            <input type="file" class="form-control" id="faviconFile" accept="image/*">
+                                            <button class="btn btn-primary" type="button" id="uploadFavicon">
+                                                <i class="fas fa-upload"></i> Subir
+                                            </button>
+                                        </div>
+                                        <input type="text" class="form-control" id="faviconPath" name="favicon_path" readonly>
+                                        <img id="faviconPreview" class="image-preview" style="display: none;">
+                                        <small class="form-text text-muted">Icono que aparece en la pestaña del navegador</small>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">Imagen de Inicio de Sesión</label>
+                                        <div class="input-group mb-2">
+                                            <input type="file" class="form-control" id="loginImageFile" accept="image/*">
+                                            <button class="btn btn-primary" type="button" id="uploadLoginImage">
+                                                <i class="fas fa-upload"></i> Subir
+                                            </button>
+                                        </div>
+                                        <input type="text" class="form-control" id="loginImagePath" name="login_image_path" readonly>
+                                        <img id="loginImagePreview" class="image-preview" style="display: none;">
+                                        <small class="form-text text-muted">Imagen que aparece en la página de inicio de sesión</small>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fas fa-save"></i> Guardar Configuración
+                                        </button>
+                                        <button type="button" class="btn btn-secondary" id="resetForm">
+                                            <i class="fas fa-undo"></i> Restablecer
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- Saved Themes -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                            <h6 class="m-0 fw-bold text-primary">Temas Guardados (Máximo 3)</h6>
+                            <button class="btn btn-sm btn-primary" id="saveAsNewTheme">
+                                <i class="fas fa-plus"></i> Guardar como Nuevo Tema
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="row" id="themesContainer">
+                                <div class="col-12 text-center py-4">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Cargando...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>© OSM 2025</span></div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    
+    <script src="/assets/js/auth_guard.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/js/sidebar.js"></script>
+    <script src="/assets/js/navbar.js"></script>
+    <script src="/assets/js/web_main_manager.js"></script>
+    <script src="/assets/js/web_config.js"></script>
+</body>
+</html>

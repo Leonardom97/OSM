@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSM</title>
+    <meta property="og:image" content="../assets/img/Sin%20título-2.png">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/png" sizes="697x475" href="../assets/img/Sin%20título-2.png">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="../assets/css/bs-theme-overrides.css">
+    <link rel="stylesheet" href="assets/css/material-super.css">
+    <style>body { visibility: hidden; }</style>
+</head>
+<body id="page-top" data-role="administrador,aux_agronomico, supervisor_agronomico,sup_logistica1">
+<div id="wrapper">
+  <div id="sidebar"></div>
+  <div class="d-flex flex-column" id="content-wrapper">
+    <div id="content">
+      <div id="navbar"></div>
+      <div class="container-fluid">
+        <main class="md-app material-s">
+
+         <nav class="md-tabs-bar">
+           <div class="md-tabs-group" id="tabsGroup"></div>
+           <button class="tab-arrow tab-arrow-left" id="tabArrowLeft" title="Pestañas anteriores">
+             <i class="fas fa-chevron-left"></i>
+           </button>
+           <button class="tab-arrow tab-arrow-right" id="tabArrowRight" title="Pestañas siguientes">
+             <i class="fas fa-chevron-right"></i>
+           </button>
+           <button class="md-tab-selector-btn" id="openTabSelector" title="Seleccionar pestañas">
+             <i class="fas fa-layer-group"></i>
+           </button>
+           <button class="md-notify-btn" id="noti-admin" title="Pendientes de aprobación" style="display:none">
+             <i class="fas fa-bell"></i>
+             <span id="noti-badge" class="md-badge">0</span>
+           </button>
+           <div class="md-tab-selector-modal" id="tabSelectorModal">
+             <div class="md-tab-selector-content">
+               <h4>Selecciona las pestañas visibles</h4>
+               <div id="tabSelectorChecks"></div>
+               <button id="closeSelector" class="md-btn">Cerrar</button>
+             </div>
+           </div>
+         </nav>
+
+          
+<!-- COSECHA FRUTA -->
+<section id="tab-content-capacitaciones" class="md-table-card" style="display:block;">
+  <div class="md-table-toolbar">
+    <span class="md-table-title"><i class="fas fa-chalkboard-teacher"></i> Tabla Auditoria cosecha</span>
+    <div class="md-table-actions">
+      <button class="md-btn md-btn-icon" id="clearFiltersBtn1" title="Limpiar filtros"><i class="fas fa-broom"></i></button>
+      <button class="md-btn md-btn-icon" id="exportBtnCosecha" title="Exportar a Excel"><i class="fas fa-file-excel"></i></button>
+      <label class="md-table-show">
+        Mostrar
+        <select id="limitSelect1" class="md-select">
+          <option value="10">10</option>
+          <option value="25" selected>25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+      </label>
+    </div>
+  </div>
+  <div class="md-table-scroll">
+    <table class="md-table" id="tabla-capacitaciones" data-tabla="capacitaciones">
+      <thead>
+        <tr>
+          <th><input type="checkbox" id="selectAll1" class="md-checkbox"></th>
+          <th><div class="md-th-flex"><span>ID</span><input class="md-input" data-col="cosecha_fruta_id" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="cosecha_fruta_id"></i></div></th>
+          <th><div class="md-th-flex"><span>Fecha Actividad</span><input class="md-input" data-col="fecha_actividad" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="fecha_actividad"></i></div></th>
+          <th><div class="md-th-flex"><span>Responsable</span><input class="md-input" data-col="responsable" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="responsable"></i></div></th>
+          <th><div class="md-th-flex"><span>Plantación</span><input class="md-input" data-col="plantacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="plantacion"></i></div></th>
+          <th><div class="md-th-flex"><span>Finca</span><input class="md-input" data-col="finca" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="finca"></i></div></th>
+          <th><div class="md-th-flex"><span>Siembra</span><input class="md-input" data-col="siembra" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="siembra"></i></div></th>
+          <th><div class="md-th-flex"><span>Lote</span><input class="md-input" data-col="lote" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="lote"></i></div></th>
+          <th><div class="md-th-flex"><span>Parcela</span><input class="md-input" data-col="parcela" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="parcela"></i></div></th>
+          <th><div class="md-th-flex"><span>Labor Específica</span><input class="md-input" data-col="labor_especifica" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="labor_especifica"></i></div></th>
+          <th><div class="md-th-flex"><span>Tipo Corte</span><input class="md-input" data-col="tipo_corte" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="tipo_corte"></i></div></th>
+          <th><div class="md-th-flex"><span>Equipo</span><input class="md-input" data-col="equipo" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="equipo"></i></div></th>
+          <th><div class="md-th-flex"><span>Cód. Colab/Contratista</span><input class="md-input" data-col="cod_colaborador_contratista" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="cod_colaborador_contratista"></i></div></th>
+          <th><div class="md-th-flex"><span>Grupo Día</span><input class="md-input" data-col="n_grupo_dia" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="n_grupo_dia"></i></div></th>
+          <th><div class="md-th-flex"><span>Hora Entrada</span><input class="md-input" data-col="hora_entrada" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="hora_entrada"></i></div></th>
+          <th><div class="md-th-flex"><span>Hora Salida</span><input class="md-input" data-col="hora_salida" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="hora_salida"></i></div></th>
+          <th><div class="md-th-flex"><span>Línea Entrada</span><input class="md-input" data-col="linea_entrada" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="linea_entrada"></i></div></th>
+          <th><div class="md-th-flex"><span>Línea Salida</span><input class="md-input" data-col="linea_salida" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="linea_salida"></i></div></th>
+          <th><div class="md-th-flex"><span>Total Personas</span><input class="md-input" data-col="total_personas" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="total_personas"></i></div></th>
+          <th><div class="md-th-flex"><span>Unidad</span><input class="md-input" data-col="unidad" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="unidad"></i></div></th>
+          <th><div class="md-th-flex"><span>Cantidad</span><input class="md-input" data-col="cantidad" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="cantidad"></i></div></th>
+          <th><div class="md-th-flex"><span>Peso Prom Lonas</span><input class="md-input" data-col="peso_promedio_lonas" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="peso_promedio_lonas"></i></div></th>
+          <th><div class="md-th-flex"><span>Total Persona Día</span><input class="md-input" data-col="total_persona_dia" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="total_persona_dia"></i></div></th>
+          <th><div class="md-th-flex"><span>Colaborador</span><input class="md-input" data-col="colaborador" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="colaborador"></i></div></th>
+          <th><div class="md-th-flex"><span>Nuevo Operador</span><input class="md-input" data-col="nuevo_operador" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="nuevo_operador"></i></div></th>
+          <th><div class="md-th-flex"><span>error registro</span><input class="md-input" data-col="error_registro" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="error_registro"></i></div></th>
+          <th><div class="md-th-flex"><span>supervision</span></div></th>
+          <th><div class="md-th-flex"><span>Acciones</span></div></th>
+        </tr>
+      </thead>
+      <tbody id="tbody-cosecha-fruta"></tbody>
+    </table>
+  </div>
+  <nav id="pagination-capacitaciones" class="md-pagination">
+    <ul class="md-pagination-list"></ul>
+  </nav>
+</section>
+          
+
+<!-- MANTENIMIENTOS -->
+<section id="tab-content-reuniones" class="md-table-card" style="display:none;">
+  <div class="md-table-toolbar">
+    <span class="md-table-title"><i class="fas fa-users"></i> Tabla Mantenimientos</span>
+    <div class="md-table-actions">
+      <button class="md-btn md-btn-icon" id="clearFiltersBtn2" title="Limpiar filtros"><i class="fas fa-broom"></i></button>
+      <button class="md-btn md-btn-icon" id="exportBtnMantenimientos" title="Exportar a Excel"><i class="fas fa-file-excel"></i></button>
+      <label class="md-table-show">
+        Mostrar
+        <select id="limitSelect2" class="md-select">
+          <option value="10">10</option>
+          <option value="25" selected>25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+      </label>
+    </div>
+  </div>
+  <div class="md-table-scroll">
+    <table class="md-table" id="tabla-reuniones" data-tabla="reuniones">
+      <thead>
+        <tr>
+          <th><input type="checkbox" id="selectAll2" class="md-checkbox"></th>
+          <th><div class="md-th-flex"><span>ID</span><input class="md-input" data-col="mantenimientos_id" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="mantenimientos_id"></i></div></th>
+          <th><div class="md-th-flex"><span>Fecha</span><input class="md-input" data-col="fecha" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="fecha"></i></div></th>
+          <th><div class="md-th-flex"><span>Responsable</span><input class="md-input" data-col="responsable" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="responsable"></i></div></th>
+          <th><div class="md-th-flex"><span>Plantación</span><input class="md-input" data-col="plantacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="plantacion"></i></div></th>
+          <th><div class="md-th-flex"><span>Finca</span><input class="md-input" data-col="finca" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="finca"></i></div></th>
+          <th><div class="md-th-flex"><span>Siembra</span><input class="md-input" data-col="siembra" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="siembra"></i></div></th>
+          <th><div class="md-th-flex"><span>Lote</span><input class="md-input" data-col="lote" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="lote"></i></div></th>
+          <th><div class="md-th-flex"><span>Parcela</span><input class="md-input" data-col="parcela" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="parcela"></i></div></th>
+          <th><div class="md-th-flex"><span>Labor Específica</span><input class="md-input" data-col="labor_especifica" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="labor_especifica"></i></div></th>
+          <th><div class="md-th-flex"><span>Observación</span><input class="md-input" data-col="observacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="observacion"></i></div></th>
+          <th><div class="md-th-flex"><span>Contratista</span><input class="md-input" data-col="contratista" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="contratista"></i></div></th>
+          <th><div class="md-th-flex"><span>Código</span><input class="md-input" data-col="codigo" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="codigo"></i></div></th>
+          <th><div class="md-th-flex"><span>Colaborador</span><input class="md-input" data-col="colaborador" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="colaborador"></i></div></th>
+          <th><div class="md-th-flex"><span>Personas</span><input class="md-input" data-col="personas" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="personas"></i></div></th>
+          <th><div class="md-th-flex"><span>Hora Entrada</span><input class="md-input" data-col="hora_entrada" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="hora_entrada"></i></div></th>
+          <th><div class="md-th-flex"><span>Hora Salida</span><input class="md-input" data-col="hora_salida" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="hora_salida"></i></div></th>
+          <th><div class="md-th-flex"><span>Línea Entrada</span><input class="md-input" data-col="linea_entrada" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="linea_entrada"></i></div></th>
+          <th><div class="md-th-flex"><span>Línea Salida</span><input class="md-input" data-col="linea_salida" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="linea_salida"></i></div></th>
+          <th><div class="md-th-flex"><span>Cantidad</span><input class="md-input" data-col="cantidad" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="cantidad"></i></div></th>
+          <th><div class="md-th-flex"><span>Unidad</span><input class="md-input" data-col="unidad" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="unidad"></i></div></th>
+          <th><div class="md-th-flex"><span>Máquina</span><input class="md-input" data-col="maquina" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="maquina"></i></div></th>
+          <th><div class="md-th-flex"><span>Tractorista</span><input class="md-input" data-col="tractorista" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="tractorista"></i></div></th>
+          <th><div class="md-th-flex"><span>Nuevo Operario</span><input class="md-input" data-col="nuevo_operario" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="nuevo_operario"></i></div></th>
+          <th><div class="md-th-flex"><span>error registro</span><input class="md-input" data-col="error_registro" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="error_registro"></i></div></th>
+          <th><div class="md-th-flex"><span>supervision</span></div></th>
+          <th><div class="md-th-flex"><span>Acciones</span></div></th>
+        </tr>
+      </thead>
+      <tbody id="tbody-mantenimientos"></tbody>
+    </table>
+  </div>
+  <nav id="pagination-reuniones" class="md-pagination">
+    <ul class="md-pagination-list"></ul>
+  </nav>
+</section>
+          
+
+ <!-- OFICIOS VARIOS PALMA -->
+<section id="tab-content-asistencias" class="md-table-card" style="display:none;">
+  <div class="md-table-toolbar">
+    <span class="md-table-title"><i class="fas fa-clipboard-check"></i> Tabla Oficios Varios Palma</span>
+    <div class="md-table-actions">
+      <button class="md-btn md-btn-icon" id="clearFiltersBtn3" title="Limpiar filtros"><i class="fas fa-broom"></i></button>
+      <button class="md-btn md-btn-icon" id="exportBtnOficios" title="Exportar a Excel"><i class="fas fa-file-excel"></i></button>
+      <label class="md-table-show">
+        Mostrar
+        <select id="limitSelect3" class="md-select">
+          <option value="10">10</option>
+          <option value="25" selected>25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+      </label>
+    </div>
+  </div>
+  <div class="md-table-scroll">
+    <table class="md-table" id="tabla-asistencias" data-tabla="asistencias">
+      <thead>
+        <tr>
+          <th><input type="checkbox" id="selectAll3" class="md-checkbox"></th>
+          <th><div class="md-th-flex"><span>ID</span><input class="md-input" data-col="oficios_varios_palma_id" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="oficios_varios_palma_id"></i></div></th>
+          <th><div class="md-th-flex"><span>Fecha</span><input class="md-input" data-col="fecha" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="fecha"></i></div></th>
+          <th><div class="md-th-flex"><span>Responsable</span><input class="md-input" data-col="responsable" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="responsable"></i></div></th>
+          <th><div class="md-th-flex"><span>Plantación</span><input class="md-input" data-col="plantacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="plantacion"></i></div></th>
+          <th><div class="md-th-flex"><span>Finca</span><input class="md-input" data-col="finca" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="finca"></i></div></th>
+          <th><div class="md-th-flex"><span>Siembra</span><input class="md-input" data-col="siembra" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="siembra"></i></div></th>
+          <th><div class="md-th-flex"><span>Lote</span><input class="md-input" data-col="lote" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="lote"></i></div></th>
+          <th><div class="md-th-flex"><span>Parcela</span><input class="md-input" data-col="parcela" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="parcela"></i></div></th>
+          <th><div class="md-th-flex"><span>Labor Específica</span><input class="md-input" data-col="labor_especifica" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="labor_especifica"></i></div></th>
+          <th><div class="md-th-flex"><span>Tipo Labor</span><input class="md-input" data-col="tipo_labor" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="tipo_labor"></i></div></th>
+          <th><div class="md-th-flex"><span>Contratista</span><input class="md-input" data-col="contratista" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="contratista"></i></div></th>
+          <th><div class="md-th-flex"><span>Código</span><input class="md-input" data-col="codigo" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="codigo"></i></div></th>
+          <th><div class="md-th-flex"><span>Colaborador</span><input class="md-input" data-col="colaborador" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="colaborador"></i></div></th>
+          <th><div class="md-th-flex"><span>Personas</span><input class="md-input" data-col="personas" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="personas"></i></div></th>
+          <th><div class="md-th-flex"><span>Hora Entrada</span><input class="md-input" data-col="hora_entrada" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="hora_entrada"></i></div></th>
+          <th><div class="md-th-flex"><span>Hora Salida</span><input class="md-input" data-col="hora_salida" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="hora_salida"></i></div></th>
+          <th><div class="md-th-flex"><span>Línea Entrada</span><input class="md-input" data-col="linea_entrada" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="linea_entrada"></i></div></th>
+          <th><div class="md-th-flex"><span>Línea Salida</span><input class="md-input" data-col="linea_salida" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="linea_salida"></i></div></th>
+          <th><div class="md-th-flex"><span>Cantidad</span><input class="md-input" data-col="cantidad" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="cantidad"></i></div></th>
+          <th><div class="md-th-flex"><span>Unidad</span><input class="md-input" data-col="unidad" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="unidad"></i></div></th>
+          <th><div class="md-th-flex"><span>Máquina</span><input class="md-input" data-col="maquina" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="maquina"></i></div></th>
+          <th><div class="md-th-flex"><span>Tractorista</span><input class="md-input" data-col="tractorista" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="tractorista"></i></div></th>
+          <th><div class="md-th-flex"><span>Nuevo Operario</span><input class="md-input" data-col="nuevo_operario" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="nuevo_operario"></i></div></th>
+          <th><div class="md-th-flex"><span>error registro</span><input class="md-input" data-col="error_registro" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="error_registro"></i></div></th>
+          <th><div class="md-th-flex"><span>supervision</span></div></th>
+          <th><div class="md-th-flex"><span>Acciones</span></div></th>
+        </tr>
+      </thead>
+      <tbody id="tbody-oficios-varios-palma"></tbody>
+    </table>
+  </div>
+  <nav id="pagination-asistencias" class="md-pagination">
+    <ul class="md-pagination-list"></ul>
+  </nav>
+</section>
+
+
+<!-- FERTILIZACIÓN ORGÁNICA -->
+<section id="tab-content-inventarios" class="md-table-card" style="display:none;">
+  <div class="md-table-toolbar">
+    <span class="md-table-title"><i class="fas fa-warehouse"></i> Tabla Fertilización Orgánica</span>
+    <div class="md-table-actions">
+      <button class="md-btn md-btn-icon" id="clearFiltersBtn4" title="Limpiar filtros"><i class="fas fa-broom"></i></button>
+      <button class="md-btn md-btn-icon" id="exportBtnFertilizacion" title="Exportar a Excel"><i class="fas fa-file-excel"></i></button>
+      <label class="md-table-show">
+        Mostrar
+        <select id="limitSelect4" class="md-select">
+          <option value="10">10</option>
+          <option value="25" selected>25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+      </label>
+    </div>
+  </div>
+  <div class="md-table-scroll">
+    <table class="md-table" id="tabla-inventarios" data-tabla="inventarios">
+      <thead>
+        <tr>
+          <th><input type="checkbox" id="selectAll4" class="md-checkbox"></th>
+          <th><div class="md-th-flex"><span>ID</span><input class="md-input" data-col="fertilizacion_organica_id" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="fertilizacion_organica_id"></i></div></th>
+          <th><div class="md-th-flex"><span>Fecha Actividad</span><input class="md-input" data-col="fecha_actividad" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="fecha_actividad"></i></div></th>
+          <th><div class="md-th-flex"><span>Responsable</span><input class="md-input" data-col="responsable" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="responsable"></i></div></th>
+          <th><div class="md-th-flex"><span>Plantación</span><input class="md-input" data-col="plantacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="plantacion"></i></div></th>
+          <th><div class="md-th-flex"><span>Finca</span><input class="md-input" data-col="finca" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="finca"></i></div></th>
+          <th><div class="md-th-flex"><span>Siembra</span><input class="md-input" data-col="siembra" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="siembra"></i></div></th>
+          <th><div class="md-th-flex"><span>Lote</span><input class="md-input" data-col="lote" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="lote"></i></div></th>
+          <th><div class="md-th-flex"><span>Parcela</span><input class="md-input" data-col="parcela" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="parcela"></i></div></th>
+          <th><div class="md-th-flex"><span>Línea Entrada</span><input class="md-input" data-col="linea_entrada" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="linea_entrada"></i></div></th>
+          <th><div class="md-th-flex"><span>Línea Salida</span><input class="md-input" data-col="linea_salida" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="linea_salida"></i></div></th>
+          <th><div class="md-th-flex"><span>Hora Entrada</span><input class="md-input" data-col="hora_entrada" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="hora_entrada"></i></div></th>
+          <th><div class="md-th-flex"><span>Hora Salida</span><input class="md-input" data-col="hora_salida" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="hora_salida"></i></div></th>
+          <th><div class="md-th-flex"><span>Labor Específica</span><input class="md-input" data-col="labor_especifica" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="labor_especifica"></i></div></th>
+          <th><div class="md-th-flex"><span>Producto Aplicado</span><input class="md-input" data-col="producto_aplicado" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="producto_aplicado"></i></div></th>
+          <th><div class="md-th-flex"><span>Dosis (kg)</span><input class="md-input" data-col="dosis_kg" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="dosis_kg"></i></div></th>
+          <th><div class="md-th-flex"><span>Unidad Aplicación</span><input class="md-input" data-col="unidad_aplicacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="unidad_aplicacion"></i></div></th>
+          <th><div class="md-th-flex"><span>Contratista Colaborador</span><input class="md-input" data-col="contratista_colaborador" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="contratista_colaborador"></i></div></th>
+          <th><div class="md-th-flex"><span>N° Colaboradores</span><input class="md-input" data-col="n_colaboradores" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="n_colaboradores"></i></div></th>
+          <th><div class="md-th-flex"><span>Colaboradores</span><input class="md-input" data-col="colaboradores" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="colaboradores"></i></div></th>
+          <th><div class="md-th-flex"><span>Tipo Labor</span><input class="md-input" data-col="tipo_labor" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="tipo_labor"></i></div></th>
+          <th><div class="md-th-flex"><span>Contratista Maquinaria</span><input class="md-input" data-col="contratista_maquinaria" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="contratista_maquinaria"></i></div></th>
+          <th><div class="md-th-flex"><span>N° Operadores</span><input class="md-input" data-col="n_operadores" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="n_operadores"></i></div></th>
+          <th><div class="md-th-flex"><span>Tipo Máquina</span><input class="md-input" data-col="tipo_maquina" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="tipo_maquina"></i></div></th>
+          <th><div class="md-th-flex"><span>Nombre Operadores</span><input class="md-input" data-col="nombre_operadores" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="nombre_operadores"></i></div></th>
+          <th><div class="md-th-flex"><span>Bultos Aplicados</span><input class="md-input" data-col="bultos_aplicados" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="bultos_aplicados"></i></div></th>
+          <th><div class="md-th-flex"><span>N° Traslado</span><input class="md-input" data-col="n_traslado" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="n_traslado"></i></div></th>
+          <th><div class="md-th-flex"><span>Kg Aplicados</span><input class="md-input" data-col="kg_aplicados" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="kg_aplicados"></i></div></th>
+          <th><div class="md-th-flex"><span>error registro</span><input class="md-input" data-col="error_registro" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="error_registro"></i></div></th>
+          <th><div class="md-th-flex"><span>supervision</span></div></th>
+          <th><div class="md-th-flex"><span>Acciones</span></div></th>
+        </tr>
+      </thead>
+      <tbody id="tbody-fertilizacion-organica"></tbody>
+    </table>
+  </div>
+  <nav id="pagination-inventarios" class="md-pagination">
+    <ul class="md-pagination-list"></ul>
+  </nav>
+</section>
+
+
+<!-- MONITOREOS GENERALES -->
+<section id="tab-content-monitoreos-generales" class="md-table-card" style="display:none;">
+  <div class="md-table-toolbar">
+    <span class="md-table-title"><i class="fas fa-search"></i>Tabla Monitoreos Generales</span>
+    <div class="md-table-actions">
+      <button class="md-btn md-btn-icon" id="clearFiltersBtnMonitoreos" title="Limpiar filtros"><i class="fas fa-broom"></i></button>
+      <button class="md-btn md-btn-icon" id="exportBtnMonitoreos" title="Exportar a Excel"><i class="fas fa-file-excel"></i></button>
+      <label class="md-table-show">
+        Mostrar
+        <select id="limitSelectMonitoreos" class="md-select">
+          <option value="10">10</option>
+          <option value="25" selected>25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+      </label>
+    </div>
+  </div>
+  <div class="md-table-scroll">
+    <table class="md-table" id="tabla-monitoreos-generales" data-tabla="monitoreos-generales">
+      <thead>
+        <tr>
+          <th><input type="checkbox" id="selectAllMonitoreos" class="md-checkbox"></th>
+          <th><div class="md-th-flex"><span>ID</span><input class="md-input" data-col="monitoreos_generales_id" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="monitoreos_generales_id"></i></div></th>
+          <th><div class="md-th-flex"><span>Fecha</span><input class="md-input" data-col="fecha" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="fecha"></i></div></th>
+          <th><div class="md-th-flex"><span>Hora</span><input class="md-input" data-col="hora" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="hora"></i></div></th>
+          <th><div class="md-th-flex"><span>Colaborador</span><input class="md-input" data-col="colaborador" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="colaborador"></i></div></th>
+          <th><div class="md-th-flex"><span>Plantación</span><input class="md-input" data-col="plantacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="plantacion"></i></div></th>
+          <th><div class="md-th-flex"><span>Finca</span><input class="md-input" data-col="finca" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="finca"></i></div></th>
+          <th><div class="md-th-flex"><span>Siembra</span><input class="md-input" data-col="siembra" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="siembra"></i></div></th>
+          <th><div class="md-th-flex"><span>Lote</span><input class="md-input" data-col="lote" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="lote"></i></div></th>
+          <th><div class="md-th-flex"><span>Parcela</span><input class="md-input" data-col="parcela" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="parcela"></i></div></th>
+          <th><div class="md-th-flex"><span>Línea</span><input class="md-input" data-col="linea" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="linea"></i></div></th>
+          <th><div class="md-th-flex"><span>Palma</span><input class="md-input" data-col="palma" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="palma"></i></div></th>
+          <th><div class="md-th-flex"><span>Grupo</span><input class="md-input" data-col="grupo" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="grupo"></i></div></th>
+          <th><div class="md-th-flex"><span>Estado</span><input class="md-input" data-col="estado" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="estado"></i></div></th>
+          <th><div class="md-th-flex"><span>Validación</span><input class="md-input" data-col="validacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="validacion"></i></div></th>
+          <th><div class="md-th-flex"><span>Síntoma</span><input class="md-input" data-col="sintoma" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="sintoma"></i></div></th>
+          <th><div class="md-th-flex"><span>Observación</span><input class="md-input" data-col="observacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="observacion"></i></div></th>
+          <th><div class="md-th-flex"><span>error registro</span><input class="md-input" data-col="error_registro" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="error_registro"></i></div></th>
+          <th><div class="md-th-flex"><span>supervision</span></div></th>
+          <th><div class="md-th-flex"><span>Acciones</span></div></th>
+        </tr>
+      </thead>
+      <tbody id="tbody-monitoreos-generales"></tbody>
+    </table>
+  </div>
+  <nav id="pagination-monitoreos-generales" class="md-pagination">
+    <ul class="md-pagination-list"></ul>
+  </nav>
+</section>
+          
+
+<!-- CT CAL SANIDAD -->
+<section id="tab-content-ct-cal-sanidad" class="md-table-card" style="display:none;">
+  <div class="md-table-toolbar">
+    <span class="md-table-title"><i class="fas fa-bug"></i>Tabla Calidad Sanidad</span>
+    <div class="md-table-actions">
+      <button class="md-btn md-btn-icon" id="clearFiltersBtnSanidad" title="Limpiar filtros"><i class="fas fa-broom"></i></button>
+      <button class="md-btn md-btn-icon" id="exportBtnSanidad" title="Exportar a Excel"><i class="fas fa-file-excel"></i></button>
+      <label class="md-table-show">
+        Mostrar
+        <select id="limitSelectSanidad" class="md-select">
+          <option value="10">10</option>
+          <option value="25" selected>25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+      </label>
+    </div>
+  </div>
+  <div class="md-table-scroll">
+    <table class="md-table" id="tabla-ct-cal-sanidad" data-tabla="ct_cal_sanidad">
+      <thead>
+        <tr>
+          <th><input type="checkbox" id="selectAllSanidad" class="md-checkbox"></th>
+          <th><div class="md-th-flex"><span>ID</span><input class="md-input" data-col="ct_cal_sanidad_id" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="ct_cal_sanidad_id"></i></div></th>
+          <th><div class="md-th-flex"><span>Fecha</span><input class="md-input" data-col="fecha" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="fecha"></i></div></th>
+          <th><div class="md-th-flex"><span>Hora</span><input class="md-input" data-col="hora" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="hora"></i></div></th>
+          <th><div class="md-th-flex"><span>Responsable</span><input class="md-input" data-col="responsable" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="responsable"></i></div></th>
+          <th><div class="md-th-flex"><span>Labor</span><input class="md-input" data-col="labor" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="labor"></i></div></th>
+          <th><div class="md-th-flex"><span>Colaborador</span><input class="md-input" data-col="colaborador" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="colaborador"></i></div></th>
+          <th><div class="md-th-flex"><span>Plantación</span><input class="md-input" data-col="plantacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="plantacion"></i></div></th>
+          <th><div class="md-th-flex"><span>Finca</span><input class="md-input" data-col="finca" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="finca"></i></div></th>
+          <th><div class="md-th-flex"><span>Siembra</span><input class="md-input" data-col="siembra" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="siembra"></i></div></th>
+          <th><div class="md-th-flex"><span>Lote</span><input class="md-input" data-col="lote" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="lote"></i></div></th>
+          <th><div class="md-th-flex"><span>Parcela</span><input class="md-input" data-col="parcela" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="parcela"></i></div></th>
+          <th><div class="md-th-flex"><span>Línea</span><input class="md-input" data-col="linea" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="linea"></i></div></th>
+          <th><div class="md-th-flex"><span>Palma</span><input class="md-input" data-col="palma" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="palma"></i></div></th>
+          <th><div class="md-th-flex"><span>Tipo Labor</span><input class="md-input" data-col="tipo_labor" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="tipo_labor"></i></div></th>
+          <th><div class="md-th-flex"><span>Estado</span><input class="md-input" data-col="estado" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="estado"></i></div></th>
+          <th><div class="md-th-flex"><span>Etapa</span><input class="md-input" data-col="etapa" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="etapa"></i></div></th>
+          <th><div class="md-th-flex"><span>Instar</span><input class="md-input" data-col="instar" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="instar"></i></div></th>
+          <th><div class="md-th-flex"><span>Verificación</span><input class="md-input" data-col="verificacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="verificacion"></i></div></th>
+          <th><div class="md-th-flex"><span>Observaciones</span><input class="md-input" data-col="observaciones" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="observaciones"></i></div></th>
+          <th><div class="md-th-flex"><span>Error Registro</span><input class="md-input" data-col="error_registro" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="error_registro"></i></div></th>
+          <th><div class="md-th-flex"><span>supervision</span></div></th>
+          <th><div class="md-th-flex"><span>Acciones</span></div></th>
+        </tr>
+      </thead>
+      <tbody id="tbody-ct-cal-sanidad"></tbody>
+    </table>
+  </div>
+  <nav id="pagination-ct-cal-sanidad" class="md-pagination">
+    <ul class="md-pagination-list"></ul>
+  </nav>
+</section>
+          
+<!-- NIVEL FREÁTICO -->
+<section id="tab-content-nivel-freatico" class="md-table-card" style="display:none;">
+  <div class="md-table-toolbar">
+    <span class="md-table-title"><i class="fas fa-water"></i>Tabla Nivel Freático</span>
+    <div class="md-table-actions">
+      <button class="md-btn md-btn-icon" id="clearFiltersBtnFreatico" title="Limpiar filtros"><i class="fas fa-broom"></i></button>
+      <button class="md-btn md-btn-icon" id="exportBtnFreatico" title="Exportar a Excel"><i class="fas fa-file-excel"></i></button>
+      <label class="md-table-show">
+        Mostrar
+        <select id="limitSelectFreatico" class="md-select">
+          <option value="10">10</option>
+          <option value="25" selected>25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+      </label>
+    </div>
+  </div>
+  <div class="md-table-scroll">
+    <table class="md-table" id="tabla-nivel-freatico" data-tabla="nivel_freatico">
+      <thead>
+        <tr>
+          <th><input type="checkbox" id="selectAllFreatico" class="md-checkbox"></th>
+          <th><div class="md-th-flex"><span>ID</span><input class="md-input" data-col="nivel_freatico_id" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="nivel_freatico_id"></i></div></th>
+          <th><div class="md-th-flex"><span>Fecha</span><input class="md-input" data-col="fecha" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="fecha"></i></div></th>
+          <th><div class="md-th-flex"><span>Hora</span><input class="md-input" data-col="hora" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="hora"></i></div></th>
+          <th><div class="md-th-flex"><span>Colaborador</span><input class="md-input" data-col="colaborador" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="colaborador"></i></div></th>
+          <th><div class="md-th-flex"><span>Plantación</span><input class="md-input" data-col="plantacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="plantacion"></i></div></th>
+          <th><div class="md-th-flex"><span>Finca</span><input class="md-input" data-col="finca" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="finca"></i></div></th>
+          <th><div class="md-th-flex"><span>Siembra</span><input class="md-input" data-col="siembra" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="siembra"></i></div></th>
+          <th><div class="md-th-flex"><span>Lote</span><input class="md-input" data-col="lote" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="lote"></i></div></th>
+          <th><div class="md-th-flex"><span>Parcela</span><input class="md-input" data-col="parcela" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="parcela"></i></div></th>
+          <th><div class="md-th-flex"><span>Línea</span><input class="md-input" data-col="linea" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="linea"></i></div></th>
+          <th><div class="md-th-flex"><span>Palma</span><input class="md-input" data-col="palma" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="palma"></i></div></th>
+          <th><div class="md-th-flex"><span>N° Pozo Observación</span><input class="md-input" data-col="n_pozo_observacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="n_pozo_observacion"></i></div></th>
+          <th><div class="md-th-flex"><span>Superficie Tubo</span><input class="md-input" data-col="superficie_tubo" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="superficie_tubo"></i></div></th>
+          <th><div class="md-th-flex"><span>Profundidad Agua</span><input class="md-input" data-col="profundidad_agua" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="profundidad_agua"></i></div></th>
+          <th><div class="md-th-flex"><span>Verificación</span><input class="md-input" data-col="verificacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="verificacion"></i></div></th>
+          <th><div class="md-th-flex"><span>Validación</span><input class="md-input" data-col="validacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="validacion"></i></div></th>
+          <th><div class="md-th-flex"><span>Enterrado</span><input class="md-input" data-col="enterrado" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="enterrado"></i></div></th>
+          <th><div class="md-th-flex"><span>Nivel Freático</span><input class="md-input" data-col="nivel_freatico" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="nivel_freatico"></i></div></th>
+          <th><div class="md-th-flex"><span>Error Registro</span><input class="md-input" data-col="error_registro" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="error_registro"></i></div></th>
+          <th><div class="md-th-flex"><span>supervision</span></div></th>
+          <th><div class="md-th-flex"><span>Acciones</span></div></th>
+        </tr>
+      </thead>
+      <tbody id="tbody-nivel-freatico"></tbody>
+    </table>
+  </div>
+  <nav id="pagination-nivel-freatico" class="md-pagination">
+    <ul class="md-pagination-list"></ul>
+  </nav>
+</section>
+          
+
+<!-- CT CAL LABORES -->
+<section id="tab-content-ct-cal-labores" class="md-table-card" style="display:none;">
+  <div class="md-table-toolbar">
+    <span class="md-table-title"><i class="fas fa-tasks"></i>Tabla Calificación Labores</span>
+    <div class="md-table-actions">
+      <button class="md-btn md-btn-icon" id="clearFiltersBtnLabores" title="Limpiar filtros"><i class="fas fa-broom"></i></button>
+      <button class="md-btn md-btn-icon" id="exportBtnLabores" title="Exportar a Excel"><i class="fas fa-file-excel"></i></button>
+      <label class="md-table-show">
+        Mostrar
+        <select id="limitSelectLabores" class="md-select">
+          <option value="10">10</option>
+          <option value="25" selected>25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+      </label>
+    </div>
+  </div>
+  <div class="md-table-scroll">
+    <table class="md-table" id="tabla-ct-cal-labores" data-tabla="ct_cal_labores">
+      <thead>
+        <tr>
+          <th><input type="checkbox" id="selectAllLabores" class="md-checkbox"></th>
+          <th><div class="md-th-flex"><span>ID</span><input class="md-input" data-col="ct_cal_labores_id" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="ct_cal_labores_id"></i></div></th>
+          <th><div class="md-th-flex"><span>Fecha</span><input class="md-input" data-col="fecha" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="fecha"></i></div></th>
+          <th><div class="md-th-flex"><span>Hora</span><input class="md-input" data-col="hora" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="hora"></i></div></th>
+          <th><div class="md-th-flex"><span>Colaborador</span><input class="md-input" data-col="colaborador" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="colaborador"></i></div></th>
+          <th><div class="md-th-flex"><span>Tipo Auditoría</span><input class="md-input" data-col="tipo_auditoria" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="tipo_auditoria"></i></div></th>
+          <th><div class="md-th-flex"><span>Labor Específica</span><input class="md-input" data-col="labor_especifica" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="labor_especifica"></i></div></th>
+          <th><div class="md-th-flex"><span>Labor</span><input class="md-input" data-col="labor" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="labor"></i></div></th>
+          <th><div class="md-th-flex"><span>Plantación</span><input class="md-input" data-col="plantacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="plantacion"></i></div></th>
+          <th><div class="md-th-flex"><span>Finca</span><input class="md-input" data-col="finca" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="finca"></i></div></th>
+          <th><div class="md-th-flex"><span>Siembra</span><input class="md-input" data-col="siembra" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="siembra"></i></div></th>
+          <th><div class="md-th-flex"><span>Lote</span><input class="md-input" data-col="lote" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="lote"></i></div></th>
+          <th><div class="md-th-flex"><span>Parcela</span><input class="md-input" data-col="parcela" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="parcela"></i></div></th>
+          <th><div class="md-th-flex"><span>Línea</span><input class="md-input" data-col="linea" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="linea"></i></div></th>
+          <th><div class="md-th-flex"><span>Palma</span><input class="md-input" data-col="palma" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="palma"></i></div></th>
+          <th><div class="md-th-flex"><span>Línea Entrada</span><input class="md-input" data-col="linea_entrada" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="linea_entrada"></i></div></th>
+          <th><div class="md-th-flex"><span>Línea Salida</span><input class="md-input" data-col="linea_salida" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="linea_salida"></i></div></th>
+          <th><div class="md-th-flex"><span>Tipo Validación</span><input class="md-input" data-col="tipo_validacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="tipo_validacion"></i></div></th>
+          <th><div class="md-th-flex"><span>Grado Enfermedad</span><input class="md-input" data-col="grado_enfermedad" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="grado_enfermedad"></i></div></th>
+          <th><div class="md-th-flex"><span>Número Galerías</span><input class="md-input" data-col="numero_galerias" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="numero_galerias"></i></div></th>
+          <th><div class="md-th-flex"><span>Promedio</span><input class="md-input" data-col="promedio" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="promedio"></i></div></th>
+          <th><div class="md-th-flex"><span>Estado</span><input class="md-input" data-col="estado" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="estado"></i></div></th>
+          <th><div class="md-th-flex"><span>Producto</span><input class="md-input" data-col="producto" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="producto"></i></div></th>
+          <th><div class="md-th-flex"><span>Observación</span><input class="md-input" data-col="observación" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="observación"></i></div></th>
+          <th><div class="md-th-flex"><span>Error Registro</span><input class="md-input" data-col="error_registro" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="error_registro"></i></div></th>
+          <th><div class="md-th-flex"><span>supervision</span></div></th>
+          <th><div class="md-th-flex"><span>Acciones</span></div></th>
+        </tr>
+      </thead>
+      <tbody id="tbody-ct-cal-labores"></tbody>
+    </table>
+  </div>
+  <nav id="pagination-ct-cal-labores" class="md-pagination">
+    <ul class="md-pagination-list"></ul>
+  </nav>
+</section>
+          
+          
+<!-- MONITOREO TRAMPAS -->
+<section id="tab-content-monitoreo-trampas" class="md-table-card" style="display:none;">
+  <div class="md-table-toolbar">
+    <span class="md-table-title"><i class="fas fa-table"></i>Tabla Monitoreo Trampas</span>
+    <div class="md-table-actions">
+      <button class="md-btn md-btn-icon" id="clearFiltersBtnTrampas" title="Limpiar filtros"><i class="fas fa-broom"></i></button>
+      <button class="md-btn md-btn-icon" id="exportBtnTrampas" title="Exportar a Excel"><i class="fas fa-file-excel"></i></button>
+      <label class="md-table-show">
+        Mostrar
+        <select id="limitSelectTrampas" class="md-select">
+          <option value="10">10</option>
+          <option value="25" selected>25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+      </label>
+    </div>
+  </div>
+  <div class="md-table-scroll">
+    <table class="md-table" id="tabla-monitoreo-trampas" data-tabla="monitoreo_trampas">
+      <thead>
+        <tr>
+          <th><input type="checkbox" id="selectAllTrampas" class="md-checkbox"></th>
+          <th><div class="md-th-flex"><span>ID</span><input class="md-input" data-col="monitoreo_trampas_id" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="monitoreo_trampas_id"></i></div></th>
+          <th><div class="md-th-flex"><span>Fecha</span><input class="md-input" data-col="fecha" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="fecha"></i></div></th>
+          <th><div class="md-th-flex"><span>Hora</span><input class="md-input" data-col="hora" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="hora"></i></div></th>
+          <th><div class="md-th-flex"><span>Colaborador</span><input class="md-input" data-col="colaborador" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="colaborador"></i></div></th>
+          <th><div class="md-th-flex"><span>Labor</span><input class="md-input" data-col="labor" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="labor"></i></div></th>
+          <th><div class="md-th-flex"><span>Ubicación</span><input class="md-input" data-col="ubicacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="ubicacion"></i></div></th>
+          <th><div class="md-th-flex"><span>Plantación</span><input class="md-input" data-col="plantacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="plantacion"></i></div></th>
+          <th><div class="md-th-flex"><span>Finca</span><input class="md-input" data-col="finca" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="finca"></i></div></th>
+          <th><div class="md-th-flex"><span>Siembra</span><input class="md-input" data-col="siembra" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="siembra"></i></div></th>
+          <th><div class="md-th-flex"><span>Lote</span><input class="md-input" data-col="lote" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="lote"></i></div></th>
+          <th><div class="md-th-flex"><span>Parcela</span><input class="md-input" data-col="parcela" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="parcela"></i></div></th>
+          <th><div class="md-th-flex"><span>Tipo Trampa</span><input class="md-input" data-col="tipo_trampa" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="tipo_trampa"></i></div></th>
+          <th><div class="md-th-flex"><span>Línea</span><input class="md-input" data-col="linea" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="linea"></i></div></th>
+          <th><div class="md-th-flex"><span>Palma</span><input class="md-input" data-col="palma" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="palma"></i></div></th>
+          <th><div class="md-th-flex"><span>Plaga</span><input class="md-input" data-col="plaga" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="plaga"></i></div></th>
+          <th><div class="md-th-flex"><span>Hembra</span><input class="md-input" data-col="hembra" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="hembra"></i></div></th>
+          <th><div class="md-th-flex"><span>Macho</span><input class="md-input" data-col="macho" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="macho"></i></div></th>
+          <th><div class="md-th-flex"><span>Lado A</span><input class="md-input" data-col="lado_a" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="lado_a"></i></div></th>
+          <th><div class="md-th-flex"><span>Lado B</span><input class="md-input" data-col="lado_b" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="lado_b"></i></div></th>
+          <th><div class="md-th-flex"><span>Número Trampa</span><input class="md-input" data-col="numero_trampa" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="numero_trampa"></i></div></th>
+          <th><div class="md-th-flex"><span>Estado Lona</span><input class="md-input" data-col="estado_lona" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="estado_lona"></i></div></th>
+          <th><div class="md-th-flex"><span>Estado Trampa</span><input class="md-input" data-col="estado_trampa" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="estado_trampa"></i></div></th>
+          <th><div class="md-th-flex"><span>Estado Ventana</span><input class="md-input" data-col="estado_ventana" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="estado_ventana"></i></div></th>
+          <th><div class="md-th-flex"><span>Estado Caña</span><input class="md-input" data-col="estado_cania" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="estado_cania"></i></div></th>
+          <th><div class="md-th-flex"><span>Estado Melaza</span><input class="md-input" data-col="estado_melaza" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="estado_melaza"></i></div></th>
+          <th><div class="md-th-flex"><span>Estado Feromona</span><input class="md-input" data-col="estado_feromona" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="estado_feromona"></i></div></th>
+          <th><div class="md-th-flex"><span>Estado Tapa</span><input class="md-input" data-col="estado_tapa" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="estado_tapa"></i></div></th>
+          <th><div class="md-th-flex"><span>Estado Envase</span><input class="md-input" data-col="estado_envase" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="estado_envase"></i></div></th>
+          <th><div class="md-th-flex"><span>Observación</span><input class="md-input" data-col="observacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="observacion"></i></div></th>
+          <th><div class="md-th-flex"><span>Error Registro</span><input class="md-input" data-col="error_registro" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="error_registro"></i></div></th>
+          <th><div class="md-th-flex"><span>supervision</span></div></th>
+          <th><div class="md-th-flex"><span>Acciones</span></div></th>
+        </tr>
+      </thead>
+      <tbody id="tbody-monitoreo-trampas"></tbody>
+    </table>
+  </div>
+  <nav id="pagination-monitoreo-trampas" class="md-pagination">
+    <ul class="md-pagination-list"></ul>
+  </nav>
+</section>
+          
+
+<!-- COMPACTACIÓN -->
+<section id="tab-content-compactacion" class="md-table-card" style="display:none;">
+  <div class="md-table-toolbar">
+    <span class="md-table-title"><i class="fas fa-compress"></i>Tabla Compactación</span>
+    <div class="md-table-actions">
+      <button class="md-btn md-btn-icon" id="clearFiltersBtnCompactacion" title="Limpiar filtros"><i class="fas fa-broom"></i></button>
+      <button class="md-btn md-btn-icon" id="exportBtnCompactacion" title="Exportar a Excel"><i class="fas fa-file-excel"></i></button>
+      <label class="md-table-show">
+        Mostrar
+        <select id="limitSelectCompactacion" class="md-select">
+          <option value="10">10</option>
+          <option value="25" selected>25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+      </label>
+    </div>
+  </div>
+  <div class="md-table-scroll">
+    <table class="md-table" id="tabla-compactacion" data-tabla="compactacion">
+      <thead>
+        <tr>
+          <th><input type="checkbox" id="selectAllCompactacion" class="md-checkbox"></th>
+          <th><div class="md-th-flex"><span>ID</span><input class="md-input" data-col="compactacion_id" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="compactacion_id"></i></div></th>
+          <th><div class="md-th-flex"><span>Fecha</span><input class="md-input" data-col="fecha" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="fecha"></i></div></th>
+          <th><div class="md-th-flex"><span>Hora</span><input class="md-input" data-col="hora" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="hora"></i></div></th>
+          <th><div class="md-th-flex"><span>Colaborador</span><input class="md-input" data-col="colaborador" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="colaborador"></i></div></th>
+          <th><div class="md-th-flex"><span>Plantación</span><input class="md-input" data-col="plantacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="plantacion"></i></div></th>
+          <th><div class="md-th-flex"><span>Finca</span><input class="md-input" data-col="finca" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="finca"></i></div></th>
+          <th><div class="md-th-flex"><span>Siembra</span><input class="md-input" data-col="siembra" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="siembra"></i></div></th>
+          <th><div class="md-th-flex"><span>Lote</span><input class="md-input" data-col="lote" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="lote"></i></div></th>
+          <th><div class="md-th-flex"><span>Parcela</span><input class="md-input" data-col="parcela" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="parcela"></i></div></th>
+          <th><div class="md-th-flex"><span>Línea</span><input class="md-input" data-col="linea" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="linea"></i></div></th>
+          <th><div class="md-th-flex"><span>Palma</span><input class="md-input" data-col="palma" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="palma"></i></div></th>
+          <th><div class="md-th-flex"><span>Ubicación</span><input class="md-input" data-col="ubicacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="ubicacion"></i></div></th>
+          <th><div class="md-th-flex"><span>Presión</span><input class="md-input" data-col="presion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="presion"></i></div></th>
+          <th><div class="md-th-flex"><span>Profundidad</span><input class="md-input" data-col="profundidad" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="profundidad"></i></div></th>
+          <th><div class="md-th-flex"><span>Error Registro</span><input class="md-input" data-col="error_registro" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="error_registro"></i></div></th>
+          <th><div class="md-th-flex"><span>supervision</span></div></th>
+          <th><div class="md-th-flex"><span>Acciones</span></div></th>
+        </tr>
+      </thead>
+      <tbody id="tbody-compactacion"></tbody>
+    </table>
+  </div>
+  <nav id="pagination-compactacion" class="md-pagination">
+    <ul class="md-pagination-list"></ul>
+  </nav>
+</section>
+          
+<!-- PLAGAS -->
+<section id="tab-content-plagas" class="md-table-card" style="display:none;">
+  <div class="md-table-toolbar">
+    <span class="md-table-title"><i class="fas fa-spider"></i>Tabla Plagas</span>
+    <div class="md-table-actions">
+      <button class="md-btn md-btn-icon" id="clearFiltersBtnPlagas" title="Limpiar filtros"><i class="fas fa-broom"></i></button>
+      <button class="md-btn md-btn-icon" id="exportBtnPlagas" title="Exportar a Excel"><i class="fas fa-file-excel"></i></button>
+      <label class="md-table-show">
+        Mostrar
+        <select id="limitSelectPlagas" class="md-select">
+          <option value="10">10</option>
+          <option value="25" selected>25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+      </label>
+    </div>
+  </div>
+  <div class="md-table-scroll">
+    <table class="md-table" id="tabla-plagas" data-tabla="plagas">
+      <thead>
+        <tr>
+          <th><input type="checkbox" id="selectAllPlagas" class="md-checkbox"></th>
+          <th><div class="md-th-flex"><span>ID</span><input class="md-input" data-col="plagas_id" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="plagas_id"></i></div></th>
+          <th><div class="md-th-flex"><span>Fecha</span><input class="md-input" data-col="fecha" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="fecha"></i></div></th>
+          <th><div class="md-th-flex"><span>Hora</span><input class="md-input" data-col="hora" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="hora"></i></div></th>
+          <th><div class="md-th-flex"><span>Colaborador</span><input class="md-input" data-col="colaborador" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="colaborador"></i></div></th>
+          <th><div class="md-th-flex"><span>Plantación</span><input class="md-input" data-col="plantacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="plantacion"></i></div></th>
+          <th><div class="md-th-flex"><span>Finca</span><input class="md-input" data-col="finca" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="finca"></i></div></th>
+          <th><div class="md-th-flex"><span>Siembra</span><input class="md-input" data-col="siembra" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="siembra"></i></div></th>
+          <th><div class="md-th-flex"><span>Lote</span><input class="md-input" data-col="lote" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="lote"></i></div></th>
+          <th><div class="md-th-flex"><span>Parcela</span><input class="md-input" data-col="parcela" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="parcela"></i></div></th>
+          <th><div class="md-th-flex"><span>Línea</span><input class="md-input" data-col="linea" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="linea"></i></div></th>
+          <th><div class="md-th-flex"><span>Palma</span><input class="md-input" data-col="palma" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="palma"></i></div></th>
+          <th><div class="md-th-flex"><span>Ubicación</span><input class="md-input" data-col="ubicacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="ubicacion"></i></div></th>
+          <th><div class="md-th-flex"><span>Orden</span><input class="md-input" data-col="orden" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="orden"></i></div></th>
+          <th><div class="md-th-flex"><span>Plaga</span><input class="md-input" data-col="plaga" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="plaga"></i></div></th>
+          <th><div class="md-th-flex"><span>Etapa</span><input class="md-input" data-col="etapa" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="etapa"></i></div></th>
+          <th><div class="md-th-flex"><span>Cantidad</span><input class="md-input" data-col="cantidad" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="cantidad"></i></div></th>
+          <th><div class="md-th-flex"><span>Instar</span><input class="md-input" data-col="instar" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="instar"></i></div></th>
+          <th><div class="md-th-flex"><span>Estado</span><input class="md-input" data-col="estado" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="estado"></i></div></th>
+          <th><div class="md-th-flex"><span>Error Registro</span><input class="md-input" data-col="error_registro" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="error_registro"></i></div></th>
+          <th><div class="md-th-flex"><span>supervision</span></div></th>
+          <th><div class="md-th-flex"><span>Acciones</span></div></th>
+        </tr>
+      </thead>
+      <tbody id="tbody-plagas"></tbody>
+    </table>
+  </div>
+  <nav id="pagination-plagas" class="md-pagination">
+    <ul class="md-pagination-list"></ul>
+  </nav>
+</section>
+          
+<!-- CT CAL TRAMPAS -->
+<section id="tab-content-ct-cal-trampas" class="md-table-card" style="display:none;">
+  <div class="md-table-toolbar">
+    <span class="md-table-title"><i class="fas fa-bug"></i>Tabla Calificación Trampas</span>
+    <div class="md-table-actions">
+      <button class="md-btn md-btn-icon" id="clearFiltersBtnTrampasCal" title="Limpiar filtros"><i class="fas fa-broom"></i></button>
+      <button class="md-btn md-btn-icon" id="exportBtnTrampasCal" title="Exportar a Excel"><i class="fas fa-file-excel"></i></button>
+      <label class="md-table-show">
+        Mostrar
+        <select id="limitSelectTrampasCal" class="md-select">
+          <option value="10">10</option>
+          <option value="25" selected>25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+      </label>
+    </div>
+  </div>
+  <div class="md-table-scroll">
+    <table class="md-table" id="tabla-ct-cal-trampas" data-tabla="ct_cal_trampas">
+      <thead>
+        <tr>
+          <th><input type="checkbox" id="selectAllTrampasCal" class="md-checkbox"></th>
+          <th><div class="md-th-flex"><span>ID</span><input class="md-input" data-col="ct_cal_trampas_id" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="ct_cal_trampas_id"></i></div></th>
+          <th><div class="md-th-flex"><span>Fecha</span><input class="md-input" data-col="fecha" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="fecha"></i></div></th>
+          <th><div class="md-th-flex"><span>Hora</span><input class="md-input" data-col="hora" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="hora"></i></div></th>
+          <th><div class="md-th-flex"><span>Responsable</span><input class="md-input" data-col="responsable" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="responsable"></i></div></th>
+          <th><div class="md-th-flex"><span>Colaborador</span><input class="md-input" data-col="colaborador" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="colaborador"></i></div></th>
+          <th><div class="md-th-flex"><span>Plantación</span><input class="md-input" data-col="plantacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="plantacion"></i></div></th>
+          <th><div class="md-th-flex"><span>Finca</span><input class="md-input" data-col="finca" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="finca"></i></div></th>
+          <th><div class="md-th-flex"><span>Siembra</span><input class="md-input" data-col="siembra" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="siembra"></i></div></th>
+          <th><div class="md-th-flex"><span>Lote</span><input class="md-input" data-col="lote" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="lote"></i></div></th>
+          <th><div class="md-th-flex"><span>Parcela</span><input class="md-input" data-col="parcela" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="parcela"></i></div></th>
+          <th><div class="md-th-flex"><span>Trampa</span><input class="md-input" data-col="trampa" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="trampa"></i></div></th>
+          <th><div class="md-th-flex"><span>Plaga</span><input class="md-input" data-col="plaga" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="plaga"></i></div></th>
+          <th><div class="md-th-flex"><span>Hembra</span><input class="md-input" data-col="hembra" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="hembra"></i></div></th>
+          <th><div class="md-th-flex"><span>Macho</span><input class="md-input" data-col="macho" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="macho"></i></div></th>
+          <th><div class="md-th-flex"><span>Lado A</span><input class="md-input" data-col="lado_a" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="lado_a"></i></div></th>
+          <th><div class="md-th-flex"><span>Lado B</span><input class="md-input" data-col="lado_b" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="lado_b"></i></div></th>
+          <th><div class="md-th-flex"><span>Estado Lona</span><input class="md-input" data-col="estado_lona" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="estado_lona"></i></div></th>
+          <th><div class="md-th-flex"><span>Estado Trampa</span><input class="md-input" data-col="estado_trampa" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="estado_trampa"></i></div></th>
+          <th><div class="md-th-flex"><span>Estado Ubicación</span><input class="md-input" data-col="estado_ubicacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="estado_ubicacion"></i></div></th>
+          <th><div class="md-th-flex"><span>Estado Ventana</span><input class="md-input" data-col="estado_ventana" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="estado_ventana"></i></div></th>
+          <th><div class="md-th-flex"><span>Estado Caña</span><input class="md-input" data-col="estado_cania" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="estado_cania"></i></div></th>
+          <th><div class="md-th-flex"><span>Estado Melaza</span><input class="md-input" data-col="estado_melaza" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="estado_melaza"></i></div></th>
+          <th><div class="md-th-flex"><span>Estado Feromona</span><input class="md-input" data-col="estado_feromona" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="estado_feromona"></i></div></th>
+          <th><div class="md-th-flex"><span>Calificación</span><input class="md-input" data-col="calificación" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="calificación"></i></div></th>
+          <th><div class="md-th-flex"><span>Observaciones</span><input class="md-input" data-col="observaciones" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="observaciones"></i></div></th>
+          <th><div class="md-th-flex"><span>Error Registro</span><input class="md-input" data-col="error_registro" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="error_registro"></i></div></th>
+          <th><div class="md-th-flex"><span>supervision</span></div></th>
+          <th><div class="md-th-flex"><span>Acciones</span></div></th>
+        </tr>
+      </thead>
+      <tbody id="tbody-ct-cal-trampas"></tbody>
+    </table>
+  </div>
+  <nav id="pagination-ct-cal-trampas" class="md-pagination">
+    <ul class="md-pagination-list"></ul>
+  </nav>
+</section>
+          
+<!-- REPORTE LOTE MONITOREO -->
+<section id="tab-content-reporte-lote-monitoreo" class="md-table-card" style="display:none;">
+  <div class="md-table-toolbar">
+    <span class="md-table-title"><i class="fas fa-clipboard-list"></i>Tabla Reporte Lote Monitoreo</span>
+    <div class="md-table-actions">
+      <button class="md-btn md-btn-icon" id="clearFiltersBtnReporteLote" title="Limpiar filtros"><i class="fas fa-broom"></i></button>
+      <button class="md-btn md-btn-icon" id="exportBtnReporteLote" title="Exportar a Excel"><i class="fas fa-file-excel"></i></button>
+      <label class="md-table-show">
+        Mostrar
+        <select id="limitSelectReporteLote" class="md-select">
+          <option value="10">10</option>
+          <option value="25" selected>25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+      </label>
+    </div>
+  </div>
+  <div class="md-table-scroll">
+    <table class="md-table" id="tabla-reporte-lote-monitoreo" data-tabla="reporte_lote_monitoreo">
+      <thead>
+        <tr>
+          <th><input type="checkbox" id="selectAllReporteLote" class="md-checkbox"></th>
+          <th><div class="md-th-flex"><span>ID</span><input class="md-input" data-col="reporte_lote_monitoreo_id" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="reporte_lote_monitoreo_id"></i></div></th>
+          <th><div class="md-th-flex"><span>Fecha</span><input class="md-input" data-col="fecha" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="fecha"></i></div></th>
+          <th><div class="md-th-flex"><span>Hora</span><input class="md-input" data-col="hora" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="hora"></i></div></th>
+          <th><div class="md-th-flex"><span>Colaborador</span><input class="md-input" data-col="colaborador" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="colaborador"></i></div></th>
+          <th><div class="md-th-flex"><span>Labor</span><input class="md-input" data-col="labor" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="labor"></i></div></th>
+          <th><div class="md-th-flex"><span>Plantación</span><input class="md-input" data-col="plantacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="plantacion"></i></div></th>
+          <th><div class="md-th-flex"><span>Finca</span><input class="md-input" data-col="finca" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="finca"></i></div></th>
+          <th><div class="md-th-flex"><span>Siembra</span><input class="md-input" data-col="siembra" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="siembra"></i></div></th>
+          <th><div class="md-th-flex"><span>Lote</span><input class="md-input" data-col="lote" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="lote"></i></div></th>
+          <th><div class="md-th-flex"><span>Parcela</span><input class="md-input" data-col="parcela" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="parcela"></i></div></th>
+          <th><div class="md-th-flex"><span>Línea</span><input class="md-input" data-col="linea" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="linea"></i></div></th>
+          <th><div class="md-th-flex"><span>Palma</span><input class="md-input" data-col="palma" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="palma"></i></div></th>
+          <th><div class="md-th-flex"><span>Hallazgo</span><input class="md-input" data-col="hallazgo" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="hallazgo"></i></div></th>
+          <th><div class="md-th-flex"><span>Observación</span><input class="md-input" data-col="observacion" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="observacion"></i></div></th>
+          <th><div class="md-th-flex"><span>Error Registro</span><input class="md-input" data-col="error_registro" placeholder="Filtrar"><i class="fas fa-sort icon-sort" data-col="error_registro"></i></div></th>
+          <th><div class="md-th-flex"><span>supervision</span></div></th>
+          <th><div class="md-th-flex"><span>Acciones</span></div></th>
+        </tr>
+      </thead>
+      <tbody id="tbody-reporte-lote-monitoreo"></tbody>
+    </table>
+  </div>
+  <nav id="pagination-reporte-lote-monitoreo" class="md-pagination">
+    <ul class="md-pagination-list"></ul>
+  </nav>
+</section>
+
+        </main>
+      </div>
+      <footer class="bg-white sticky-footer" style="margin-top:20px;">
+        <div class="container my-auto">
+          <div class="text-center my-auto copyright"><span>© OSM 2025</span></div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<!-- Modal edición -->
+<div class="modal fade" id="modal-editar" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <form id="form-editar">
+        <div class="modal-header">
+          <h5 class="modal-title">Editar Registro</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body row g-3 px-4 pt-3" id="campos-formulario"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal pendientes -->
+<div class="modal fade" id="modal-pendientes-mantenimientos" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="fas fa-bell"></i> Pendientes de aprobación (Mantenimientos)</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <div id="pendientes-mantenimientos"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/js/auth_guard.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/js/sidebar.js"></script>
+<script src="assets/js/agronomia.js"></script>
+<script src="assets/js/role_guard_agronomia.js"></script>
+<script src="assets/js/xlsx.full.min.js"></script>
+<script src="assets/js/material-super.js"></script>
+
+<!-- Scripts de tablas (asegúrate que ya estén con supervision en minúsculas) -->
+<script src="assets/js/cosecha_fruta.js"></script>
+<script src="assets/js/mantenimientos.js"></script>
+<script src="assets/js/oficios_varios_palma.js"></script>
+<script src="assets/js/fertilizacion_organica.js"></script>
+<script src="assets/js/monitoreos_generales.js"></script>
+<script src="assets/js/ct_cal_sanidad.js"></script>
+<script src="assets/js/monitoreos_generales.js"></script>
+<script src="assets/js/monitoreo_trampas.js"></script>
+<script src="assets/js/nivel_freatico.js"></script>
+<script src="assets/js/ct_cal_labores.js"></script>
+<script src="assets/js/reporte_lote_monitoreo.js"></script>
+<script src="assets/js/ct_cal_trampas.js"></script>
+<script src="assets/js/compactacion.js"></script>
+<script src="assets/js/plagas.js"></script>
+
+<script src="assets/js/verificacion_icons.js"></script>
+<script src="assets/js/init_noti_admin.js"></script>
+
+    <script src="../assets/js/web_config.js"></script>
+</body>
+</html>

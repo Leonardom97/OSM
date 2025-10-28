@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="es-419" data-bss-forced-theme="light">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>OSM</title>
+    <meta property="og:image" content="assets/img/Sin%20título-2.png">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/png" sizes="697x475" href="../assets/img/Sin%20título-2.png">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="../assets/css/bs-theme-overrides.css">
+    <style>body { visibility: hidden; }</style>
+</head>
+
+<body id="page-top" body data-role="Administrador">
+    <div id="wrapper">
+        <div id="sidebar"></div>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <div id="navbar"></div>
+                <div class="container-fluid">
+                    <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                        <h2 class="text-primary mb-0">Administrador de Colaboradores</h2>
+                    </div>
+                    <div class="card shadow">
+                        <div class="card-header py-3" style="background:rgb(248, 249, 252);">
+                            <p class="fw-bold text-primary m-0">Listado de colaboradores</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 text-nowrap">
+                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Mostrar<select class="form-select-sm d-inline-block form-select">
+                                                <option value="10" selected="">10</option>
+                                                <option value="25">25</option>
+                                                <option value="50">50</option>
+                                                <option value="100">100</option>
+                                            </select></label></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-md-end dataTables_filter" id="dataTable_filter"><label class="form-label"><input class="form-control-sm form-control" type="search" aria-controls="dataTable" placeholder="Buscar "></label></div>
+                                </div>
+                            </div>
+                            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                                <table class="table my-0" id="dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" style="background:var(--bs-primary);border-top-left-radius:10px;border-bottom-left-radius:10px;border-width:1;color: var(--bs-body-bg);">Cedula</th>
+                                            <th class="text-center" style="background:var(--bs-primary);border-color:var(--bs-card-cap-bg);border-left-width:1px;color: var(--bs-body-bg);">Nombres</th>
+                                            <th class="text-center" style="background:var(--bs-primary);border-color:var(--bs-card-cap-bg);border-left-width:1px;color: var(--bs-body-bg);">Apellidos</th>
+                                            <th class="text-center" style="background:var(--bs-primary);border-color:var(--bs-card-cap-bg);border-left-width:1px;color: var(--bs-body-bg);">Situacion</th>
+                                            <th class="text-center" style="background:var(--bs-primary);border-color:var(--bs-card-cap-bg);border-left-width:1px;color: var(--bs-body-bg);">Empresa</th>
+                                            <th class="text-center" style="background:var(--bs-primary);border-top-right-radius:10px;border-bottom-right-radius:10px;border-color:var(--bs-card-cap-bg);border-left-width:1px;color: var(--bs-body-bg);">Opciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       <!-- Aquí el JS inyecta las filas -->
+                                    </tbody>
+                                    <tfoot class="text-center">
+                                        <tr>
+                                            <th class="text-center" style="background:var(--bs-primary);border-top-left-radius:10px;border-bottom-left-radius:10px;border-width:1;color: var(--bs-body-bg);">Cedula</th>
+                                            <th class="text-center" style="background:var(--bs-primary);border-color:var(--bs-card-cap-bg);border-left-width:1px;color: var(--bs-body-bg);">Nombres</th>
+                                            <th class="text-center" style="background:var(--bs-primary);border-color:var(--bs-card-cap-bg);border-left-width:1px;color: var(--bs-body-bg);">Apellidos</th>
+                                            <th class="text-center" style="background:var(--bs-primary);border-color:var(--bs-card-cap-bg);border-left-width:1px;color: var(--bs-body-bg);">Situacion</th>
+                                            <th class="text-center" style="background:var(--bs-primary);border-color:var(--bs-card-cap-bg);border-left-width:1px;color: var(--bs-body-bg);">Empresa</th>
+                                            <th class="text-center" style="background:var(--bs-primary);border-top-right-radius:10px;border-bottom-right-radius:10px;border-color:var(--bs-card-cap-bg);border-left-width:1px;color: var(--bs-body-bg);">Opciones</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 align-self-center">
+                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Mostrando 10 de 27</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                        <ul class="pagination">
+                                            <li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
+                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" role="dialog" tabindex="-1" id="modal-vuc">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background:rgb(248,249,252);">
+                                <h4 class="modal-title">Visor Colaborador</h4><button class="btn-close focus-ring focus-ring-primary" aria-label="Guardar" data-bs-dismiss="modal" type="button"></button>
+                            </div>
+                            <div class="modal-body text-lg-center">
+                                <div class="row g-5" style="background:var(--bs-body-bg);border-radius:10px;">
+                                    <div class="col">
+                                        <main>
+                                            <div class="row g-5" style="background:var(--bs-body-bg);border-radius:10px;">
+                                                <div class="col-md-12 col-lg-12 col-xl-12">
+                                                    <h4 class="mb-3" id="titulo-vuc">Colaborador ID ##</h4>
+                                                    <form class="needs-validation" novalidate="">
+                                                        <div class="row g-3">
+                                                            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6"><label class="form-label form-label">Identificación</label>
+                                                                <div class="input-group has-validation"><input class="form-control form-control form-control form-control form-control" type="text" id="cedula-vuc" placeholder="Cedula" style="height:50px;" readonly></div>
+                                                            </div>
+                                                            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6"><label class="form-label form-label">Contraseña</label>
+                                                                <div class="input-group has-validation"><input class="form-control form-control form-control form-control form-control" type="text" id="contraseña-vuc" placeholder="Contraseña" style="height:50px;" readonly></div>
+                                                            </div>
+                                                            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6"><label class="form-label form-label">Primer Nombre</label>
+                                                                <div class="input-group has-validation"><input class="form-control form-control form-control form-control form-control" type="text" id="nombre1-vuc" placeholder="Nombre 1" style="height:50px;" readonly></div>
+                                                            </div>
+                                                            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6"><label class="form-label form-label">Segundo Nombre</label>
+                                                                <div class="input-group has-validation"><input class="form-control form-control form-control form-control form-control" type="text" id="nombre2-vuc" placeholder="Nombre 2" style="height:50px;" readonly></div>
+                                                            </div>
+                                                            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6"><label class="form-label form-label">Primer Apellido</label>
+                                                                <div class="input-group has-validation"><input class="form-control form-control form-control form-control form-control" type="text" id="apellido1-vuc" placeholder="Apellido 1" style="height:50px;" readonly></div>
+                                                            </div>
+                                                            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6"><label class="form-label form-label">Segundo Apellido</label>
+                                                                <div class="input-group has-validation"><input class="form-control form-control form-control form-control form-control" type="text" id="apellido2-vuc" placeholder="Apellido 2" style="height:50px;" readonly></div>
+                                                            </div>
+                                                            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6"><label class="form-label form-label">Situación</label>
+                                                                <div class="input-group has-validation"><input class="form-control form-control form-control form-control form-control" type="text" id="situacion-vuc" placeholder="Situacion" style="height:50px;" readonly></div>
+                                                            </div>
+                                                            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6"><label class="form-label form-label">Empresa</label>
+                                                                <div class="input-group has-validation"><input class="form-control form-control form-control form-control form-control" type="text" id="empresa-vuc" placeholder="Empresa" style="height:50px;" readonly></div>
+                                                            </div>
+                                                            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6"><label class="form-label form-label">Cargo</label>
+                                                                <div class="input-group has-validation"><input class="form-control form-control form-control form-control form-control" type="text" id="cargo-vuc" placeholder="Cargo" style="height:50px;" readonly></div>
+                                                            </div>
+                                                            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6"><label class="form-label form-label">Rango</label>
+                                                                <div class="input-group has-validation"><input class="form-control form-control form-control form-control form-control" type="text" id="rango-vuc" placeholder="Rango" style="height:50px;" readonly></div>
+                                                            </div>
+                                                            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6"><label class="form-label form-label">Área&nbsp;</label>
+                                                                <div class="input-group has-validation"><input class="form-control form-control form-control form-control form-control" type="text" id="area-vuc" placeholder="área" style="height:50px;" readonly></div>
+                                                            </div>
+                                                            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6"><label class="form-label form-label">Sub área</label>
+                                                                <div class="input-group has-validation"><input class="form-control form-control form-control form-control form-control" type="text" id="sub-area-vuc" placeholder="sub área" style="height:50px;" readonly></div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </main>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer" style="background:rgb(248,249,252);"><button class="btn btn-primary" id="cerrar-vuc" style="color:var(--bs-body-bg);" type="button">Cerrar</button><button class="btn btn-light" data-bs-dismiss="modal" type="button"></button></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" role="dialog" tabindex="-1" id="modal-cuc">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background:rgb(248,249,252);">
+                                <h4 class="modal-title">Editor de Contraseña</h4><button class="btn-close focus-ring focus-ring-primary" aria-label="Guardar" data-bs-dismiss="modal" type="button"></button>
+                            </div>
+                            <div class="modal-body text-lg-center">
+                                <div class="row g-5" style="background:var(--bs-body-bg);border-radius:10px;">
+                                    <div class="col">
+                                        <main>
+                                            <div class="row g-5" style="background:var(--bs-body-bg);border-radius:10px;">
+                                                <div class="col-md-12 col-lg-12 col-xl-12">
+                                                    <h4 class="mb-3">Contraseña Actual</h4>
+                                                        <div class="row g-3">
+                                                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                                                                <div class="input-group"><input class="form-control form-control form-control form-control form-control" type="text" id="contraseña-a-cuc" placeholder="Contraseña" style="height:50px;">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <h4 class="mb-3">Contraseña Nueva</h4>
+                                                            </div>
+                                                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                                                                <div class="input-group"><input class="form-control form-control form-control form-control form-control" type="password" id="contraseña-n-cuc" placeholder="Contraseña Nueva" required="" style="margin-left:0px;border-radius:6px;height:50px;"><input class="form-control form-control form-control form-control form-control" type="password" id="contraseña-nc-cuc" placeholder="Confirmar Contraseña" style="margin-left:12px;border-radius:6px;height:50px;">
+                
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <hr class="my-4">
+                                                        <div class="my-3"></div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </main>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer" style="background:rgb(248,249,252);"><button class="btn btn-primary" id="guardar-eru-1" style="color:var(--bs-body-bg);" type="button">Cambiar</button><button class="btn btn-light" data-bs-dismiss="modal" type="button"></button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>© OSM 2025</span></div>
+                </div>
+            </footer>
+        </div><a class="d-inline border rounded scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+    <script src="../assets/js/auth_guard.js"></script>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/sidebar.js"></script>
+    <script src="assets/js/usuarios.js"></script>
+    <script src="assets/js/colaboradores.js"></script>
+    <script src="../assets/js/web_config.js"></script>
+</body>
+
+</html>

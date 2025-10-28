@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="es-419">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Programación de Capacitaciones - OSM</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="../assets/css/bs-theme-overrides.css">
+    <style>body { visibility: hidden; }</style>
+</head>
+<body id="page-top" data-role="Administrador,Capacitador,Aux_Capacitador,Capacitador_SIE,Capacitador_GH,Capacitador_TI,Capacitador_MT,Capacitador_ADM,Capacitador_IND,Capacitador_AGR">
+    <script src="../assets/js/auth_guard.js"></script>
+
+    <div id="wrapper">
+        <div id="sidebar"></div>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <div id="navbar"></div>
+
+                <div class="container-fluid">
+                    <!-- Trainer Alerts (7-day warnings) -->
+                    <div class="alert alert-dismissible fade show d-none" id="trainerAlerts" role="alert">
+                        <h5 class="alert-heading">
+                            <i class="fas fa-bell"></i> Capacitaciones que Vencen Pronto
+                        </h5>
+                        <div id="alertsList"></div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h3 class="text-dark mb-0">Programación de Capacitaciones</h3>
+                        <div>
+                            <button class="btn btn-success btn-sm me-2" id="btnImportExcel">
+                                <i class="fas fa-file-excel"></i> Importar Excel
+                            </button>
+                            <button class="btn btn-primary btn-sm" id="btnNuevaProgramacion">
+                                <i class="fas fa-plus"></i> Nueva Programación
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Filters -->
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-md-3">
+                                    <label class="form-label">Cargo</label>
+                                    <select class="form-select" id="filterCargo">
+                                        <option value="">Todos</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label">Tema</label>
+                                    <select class="form-select" id="filterTema">
+                                        <option value="">Todos</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label">Rol Capacitador</label>
+                                    <select class="form-select" id="filterRol">
+                                        <option value="">Todos</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label">&nbsp;</label>
+                                    <button class="btn btn-secondary w-100" id="btnClearFilters">
+                                        <i class="fas fa-eraser"></i> Limpiar Filtros
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Table -->
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <h6 class="text-primary m-0 fw-bold">Listado de Programaciones</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover" id="tableProgramaciones">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Cargo</th>
+                                            <th>Sub Área</th>
+                                            <th>Tema</th>
+                                            <th>Frecuencia (meses)</th>
+                                            <th>Rol Capacitador</th>
+                                            <th>Próxima Capacitación</th>
+                                            <th>Pendientes</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="9" class="text-center">
+                                                <div class="spinner-border" role="status">
+                                                    <span class="visually-hidden">Cargando...</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>© OSM 2025</span></div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Modal for Create/Edit -->
+    <div class="modal fade" id="modalProgramacion" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Nueva Programación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formProgramacion">
+                        <input type="hidden" id="programacionId">
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Cargo <span class="text-danger">*</span></label>
+                            <select class="form-select" id="inputCargo" required>
+                                <option value="">Seleccione...</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Sub Área <span class="text-danger">*</span></label>
+                            <select class="form-select" id="inputSubArea" required>
+                                <option value="">Seleccione...</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Tema <span class="text-danger">*</span></label>
+                            <select class="form-select" id="inputTema" required>
+                                <option value="">Seleccione...</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Frecuencia (meses) <span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" id="inputFrecuencia" min="1" max="120" value="12" required>
+                            <small class="form-text text-muted">Cada cuántos meses se debe repetir la capacitación</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Rol Capacitador <span class="text-danger">*</span></label>
+                            <select class="form-select" id="inputRolCapacitador" required>
+                                <option value="">Seleccione...</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnGuardar">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Excel Import -->
+    <div class="modal fade" id="modalImport" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Importar desde Excel</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info">
+                        <h6>Formato del archivo Excel:</h6>
+                        <ul>
+                            <li>Columna A: ID Cargo (ej: 117)</li>
+                            <li>Columna B: Sub Área (opcional)</li>
+                            <li>Columna C: ID Tema (número)</li>
+                            <li>Columna D: Frecuencia en meses (número)</li>
+                            <li>Columna E: Nombre del Rol Capacitador</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Archivo Excel</label>
+                        <input type="file" class="form-control" id="inputExcel" accept=".xlsx,.xls">
+                    </div>
+
+                    <div id="importPreview" class="d-none">
+                        <h6>Vista Previa:</h6>
+                        <div class="table-responsive" style="max-height: 300px;">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Cargo</th>
+                                        <th>Sub Área</th>
+                                        <th>Tema</th>
+                                        <th>Frecuencia</th>
+                                        <th>Rol</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="importPreviewBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="importErrors" class="d-none mt-3">
+                        <div class="alert alert-danger">
+                            <h6>Errores:</h6>
+                            <ul id="importErrorList"></ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnImportar" disabled>Importar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/sidebar.js"></script>
+    <script src="../assets/js/navbar.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" 
+            integrity="sha512-r22gChDnGvBylk90+2e/ycr3RVrDi8DIOkIGNhJlKfG2zINSN8vR3RBDCZGnE7kTUJuoGq8N+XCjbYgLqOOJ9w==" 
+            crossorigin="anonymous" 
+            referrerpolicy="no-referrer"></script>
+    <script src="assets/js/programacion.js"></script>
+    <script src="../assets/js/web_config.js"></script>
+</body>
+</html>

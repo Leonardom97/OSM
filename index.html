@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Login - OSM</title>
+    <meta property="og:image" content="assets/img/Sin%20título-2.png">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/png" sizes="697x475" href="assets/img/Sin%20título-2.png">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/bs-theme-overrides.css">
+    <link rel="stylesheet" href="assets/css/checkout.css">
+    <style>body { visibility: hidden; }</style>
+</head>
+<body class="bg-gradient-primary">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-9 col-lg-12 col-xl-10">
+            <div class="card border-0 shadow-lg o-hidden my-5">
+                <div class="card-body p-0">
+                    <div class="row">
+                        <div class="col-lg-6 d-none d-lg-flex">
+                            <div class="flex-grow-1 bg-login-image" style="background:url('assets/img/ico.jpg') round; background-size:contain;"></div>
+                        </div>
+                        <div class="col-lg-6" style="height:486px;">
+                            <!-- texto inicial -->
+                            <div class="card-body p-4" style="margin-top:41px;">
+                                <div class="text-center">
+                                    <h4 class="text-dark mb-4">Iniciar sesión</h4>
+                                </div>
+                                <!-- Pestañas -->
+                                <ul class="nav nav-tabs nav-fill mb-4" id="authTabs" role="tablist" style="background: var(--bs-tertiary-bg);border-width: 0px;padding: 6px;border-radius: 25px;">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="colaborador-tab" data-bs-toggle="tab" data-bs-target="#login_colaborador" type="button" role="tab" aria-controls="login_colaborador" aria-selected="true">
+                                            Colaboradores
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="usuario-tab" data-bs-toggle="tab" data-bs-target="#login_usuario" type="button" role="tab" aria-controls="login_usuario" aria-selected="false">
+                                            Administradores
+                                        </button>
+                                    </li>
+                                </ul>
+                                <!-- Contenido de pestañas -->
+                                <div class="tab-content">
+                                    <!-- Colaboradores -->
+                                    <div class="tab-pane fade show active" id="login_colaborador" role="tabpanel" aria-labelledby="colaborador-tab">
+                                        <form id="registerForm" class="user">
+                                            <div class="mb-3">
+                                                <input type="text" class="form-control form-control-user" id="Ingreso_colaborador" aria-describedby="colaboradorHelp" placeholder="Ingresar cédula" name="Ingreso_cedula">
+                                            </div>
+                                            <div class="mb-3 position-relative">
+                                                <input class="form-control form-control-user" type="password" id="Password_colaborador" name="Password_colaborador" placeholder="Contraseña">
+                                                <i class="fas fa-eye position-absolute toggle-password" style="right: 20px; top: 50%; transform: translateY(-50%); cursor: pointer;" data-target="Password_colaborador"></i>
+                                            </div>
+                                            <button class="btn btn-primary d-block btn-user w-100" type="submit" style="border-style:none;">Ingresar</button>
+                                            <hr>
+                                        </form>
+                                    </div>
+                                    <!-- Administradores -->
+                                    <div class="tab-pane fade" id="login_usuario" role="tabpanel" aria-labelledby="usuario-tab">
+                                        <form id="loginForm" class="user">
+                                            <div class="mb-3">
+                                                <input type="text" class="form-control form-control-user" id="Ingreso_Usuario" aria-describedby="usuarioHelp" placeholder="Ingresar cédula" name="Ingreso_user">
+                                            </div>
+                                            <div class="mb-3 position-relative">
+                                                <input class="form-control form-control-user" type="password" id="Password_usuario" name="password" placeholder="Contraseña">
+                                                <i class="fas fa-eye position-absolute toggle-password" style="right: 20px; top: 50%; transform: translateY(-50%); cursor: pointer;" data-target="Password_usuario"></i>
+                                            </div>
+                                            <button class="btn btn-primary d-block btn-user w-100" type="submit" style="border-style:none;">Ingresar</button>
+                                            <hr>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="text-center"></div>
+
+                            </div>
+                        <footer>
+                            <div class="container my-auto">
+                                <div class="text-center my-auto copyright"><span style="font-size: 15px;">© OSM 2025</span></div>
+                            </div>
+                        </footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/login.js"></script>
+    <script src="assets/js/web_config.js"></script>
+</body>
+</html>

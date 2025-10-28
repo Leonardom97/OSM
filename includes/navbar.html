@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand bg-white shadow mb-4 topbar static-top navbar-light">
+    <div class="container-fluid">
+        <button class="btn rounded-circle me-3" id="sidebarToggleTop"><i class="fas fa-bars"></i></button>
+        <ul class="navbar-nav flex-nowrap ms-auto">
+            <li class="nav-item dropdown no-arrow mx-1">
+                <div class="nav-item dropdown no-arrow">
+                    <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#" id="notificationBell">
+                        <span class="badge bg-danger badge-counter" id="notificationBadge" style="display: none;">0</span>
+                        <i class="fas fa-bell fa-fw"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" style="width: 350px; max-height: 400px; overflow-y: auto;">
+                        <h6 class="dropdown-header">
+                            <i class="fas fa-graduation-cap"></i> Capacitaciones Pendientes
+                        </h6>
+                        <div id="notificationList">
+                            <div class="text-center p-3">
+                                <div class="spinner-border spinner-border-sm" role="status">
+                                    <span class="visually-hidden">Cargando...</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="dropdown-item text-center small text-gray-500" href="/Usuarios.html">
+                            Ver todas las capacitaciones
+                        </a>
+                    </div>
+                </div>
+            </li>
+            <div class="d-none d-sm-block topbar-divider"></div>
+            <li class="nav-item dropdown no-arrow">
+                <div class="nav-item dropdown no-arrow">
+                    <a class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#">
+                        <span class="d-none d-lg-inline me-2 small" style="color: var(--bs-primary);" id="usuarioNombre">Cargando...</span>
+                        <img class="border rounded-circle img-profile" src="../assets/img/avatars/avatar1.jpeg">
+                    </a>
+                    <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
+                        <a class="dropdown-item dropdown-logout" href="#" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw me-2"></i>&nbsp;Cerrar sesión
+                        </a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<script src="/assets/js/navbar.js"></script>
